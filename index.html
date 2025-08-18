@@ -116,7 +116,7 @@
                     <a href="#solution" class="text-slate-600 hover:text-sky-500 transition-colors">Solution</a>
                     <a href="#demo" class="text-slate-600 hover:text-sky-500 transition-colors">Interactive Demo</a>
                 </div>
-                <a href="#demo" class="hidden md:block bg-sky-500 text-white px-4 py-2 rounded-lg font-semibold hover:bg-sky-600 transition-colors">See It In Action</a>
+                <a href="mailto:dan@pirimid.ai" class="hidden md:block bg-sky-500 text-white px-4 py-2 rounded-lg font-semibold hover:bg-sky-600 transition-colors">Contact Us</a>
             </div>
         </nav>
     </header>
@@ -229,14 +229,14 @@
                                     <label for="equipmentHours" class="block font-medium text-slate-700">Working Time (hrs/day)</label>
                                     <div class="flex items-center space-x-4">
                                         <input type="range" id="equipmentHours" min="7" max="11" step="0.25" value="9" class="w-full h-2 bg-slate-200 rounded-lg appearance-none cursor-pointer">
-                                        <span id="equipmentHoursValue" class="font-bold text-sky-600 w-16 text-center text-lg">6.10</span>
+                                        <span id="equipmentHoursValue" class="font-bold text-sky-600 w-16 text-center text-lg">9.00</span>
                                     </div>
                                 </div>
                                 <div>
                                     <label for="removalRates" class="block font-medium text-slate-700">Average Wait (min/day)</label>
                                      <div class="flex items-center space-x-4">
-                                        <input type="range" id="removalRates" min="0" max="60" step="0.01" value="30" class="w-full h-2 bg-slate-200 rounded-lg appearance-none cursor-pointer">
-                                        <span id="removalRatesValue" class="font-bold text-sky-600 w-16 text-center text-lg">1.63</span>
+                                        <input type="range" id="removalRates" min="0" max="60" step="1" value="30" class="w-full h-2 bg-slate-200 rounded-lg appearance-none cursor-pointer">
+                                        <span id="removalRatesValue" class="font-bold text-sky-600 w-16 text-center text-lg">30</span>
                                     </div>
                                 </div>
                                 <div>
@@ -262,8 +262,7 @@
                         <h4 class="text-lg font-bold text-sky-800 mb-4">AI Mitigation Suggestions</h4>
                         <div id="suggestionContent" class="text-slate-700"></div>
                         <div id="suggestionLoading" class="hidden flex items-center justify-center py-4">
-                            <div class="loading-spinner"></div>
-                            <span class="ml-3 text-sky-700">Generating suggestions...</span>
+                            
                         </div>
                     </div>
                 </div>
@@ -519,66 +518,16 @@
 
             updateUI();
 
-            getMitigationBtn.addEventListener('click', async () => {
-                const varianceText = endDateVarianceEl.textContent;
-                const prompt = `The construction project is currently projected to be ${varianceText.replace('+', '').trim()} schedule. Given this variance, suggest 3 concise, actionable mitigation strategies for a construction project manager. Format as a bulleted list.`;
-
+            getMitigationBtn.addEventListener('click', () => {
+                
                 mitigationSuggestionsDiv.classList.remove('hidden');
                 suggestionContent.innerHTML = '';
                 suggestionLoading.classList.remove('hidden');
                 getMitigationBtn.disabled = true;
 
-                let retries = 0;
-                const maxRetries = 5;
-                const baseDelay = 1000; // 1 second
+                suggestionContent.innerHTML = '<p class="text-black-500"><strong>Primary Delay: </strong>Detailed analysis indicate primary driver of delays is lack of materials leading to wait times averaging 30min per day. Ensuring an inventory of at least 14 panels at the start of each day will prevent delays in the future.</p><div class="text-black-500 mr-3 mt-1""></p><strong>Productivity: </strong>Panel installation productivity is slightly underperforming plan while working time is meeting plan.</div></p><div class="text-black-500 mr-3 mt-1""><strong>Urgency: </strong>Mitigating action required in next 2 weeks or project will not deliver schedule. </div> </p>';
 
-                while (retries < maxRetries) {
-                    try {
-                        let chatHistory = [];
-                        chatHistory.push({ role: "user", parts: [{ text: prompt }] });
-                        const payload = { contents: chatHistory };
-                        const apiKey = "";
-                        const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-05-20:generateContent?key=${apiKey}`;
-
-                        const response = await fetch(apiUrl, {
-                            method: 'POST',
-                            headers: { 'Content-Type': 'application/json' },
-                            body: JSON.stringify(payload)
-                        });
-
-                        if (response.status === 429) { // Too Many Requests
-                            const delay = baseDelay * Math.pow(2, retries) + Math.random() * 1000;
-                            console.warn(`Rate limit hit. Retrying in ${delay / 1000} seconds...`);
-                            await new Promise(res => setTimeout(res, delay));
-                            retries++;
-                            continue;
-                        }
-
-                        const result = await response.json();
-
-                        if (result.candidates && result.candidates.length > 0 &&
-                            result.candidates[0].content && result.candidates[0].content.parts &&
-                            result.candidates[0].content.parts.length > 0) {
-                            const text = result.candidates[0].content.parts[0].text;
-                            suggestionContent.innerHTML = text.replace(/\*/g, '').split('\n').filter(line => line.trim() !== '').map(line => `<li>${line.trim()}</li>`).join('');
-                        } else {
-                            suggestionContent.innerHTML = '<p class="text-blue-500">Working Time and Panel Install Time are meeting plan. Multiple delays of waiting for material of up to 4 hours have put project behind by ~10%.</p>';
-                        }
-                        break; // Exit loop on success
-                    } catch (error) {
-                        console.error('Error fetching suggestions:', error);
-                        suggestionContent.innerHTML = '<p class="text-red-500">An error occurred. Please try again.</p>';
-                        break; // Exit loop on fatal error
-                    } finally {
-                        suggestionLoading.classList.add('hidden');
-                        getMitigationBtn.disabled = false;
-                    }
-                }
-                if (retries === maxRetries) {
-                    suggestionContent.innerHTML = '<p class="text-red-500">Failed to get suggestions after multiple retries. Please try again later.</p>';
-                    suggestionLoading.classList.add('hidden');
-                    getMitigationBtn.disabled = false;
-                }
+                
             });
         });
     </script>
