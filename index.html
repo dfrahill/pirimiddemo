@@ -150,7 +150,7 @@
                     </div>
                     <div class="stat-card text-center">
                         <div class="stat-value">$1.2T</div>
-                        <div class="stat-label mt-2">US Non-Residential Market</div>
+                        <div class="stat-label mt-2">Non-Residential US Market</div>
                         <p class="text-sm text-slate-500 mt-2">Part of a $10T+ global industry, representing a vast landscape for efficiency gains.</p>
                     </div>
                     <div class="stat-card text-center">
@@ -187,11 +187,7 @@
                             </li>
                             <li class="flex items-start">
                                 <span class="text-sky-500 mr-3 mt-1">&#10004;</span>
-                                <div><strong class="text-slate-700">Automated Benchmarking:</strong> Assess performance relative to internal and external projects or technologies in real-time. Learn what works.</div>
-                            </li>
-                            <li class="flex items-start">
-                                <span class="text-sky-500 mr-3 mt-1">&#10004;</span>
-                                <div><strong class="text-slate-700">Root Cause Analysis:</strong> Use continuous data to separate execution from blockers and get to the "why" behind variances.</div>
+                                <div><strong class="text-slate-700">Productivity Root Causes:</strong> Use continuous data to separate execution from blockers and get to the "why" behind variances at the task level.</div>
                             </li>
                             <li class="flex items-start">
                                 <span class="text-sky-500 mr-3 mt-1">&#10004;</span>
@@ -199,7 +195,11 @@
                             </li>
                             <li class="flex items-start">
                                 <span class="text-sky-500 mr-3 mt-1">&#10004;</span>
-                                <div><strong class="text-slate-700">Interactive Scenario Planning:</strong> Model the effect of mitigations to find the best path forward.</div>
+                                <div><strong class="text-slate-700">Interactive Scenario Planning:</strong> Model the effect of mitigations to find the best path forward to reach optimal outcomes.</div>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-sky-500 mr-3 mt-1">&#10004;</span>
+                                <div><strong class="text-slate-700">Automated Benchmarking:</strong> Assess performance relative to internal and external projects or technologies in real-time. Stop guessing, learn what works.</div>
                             </li>
                         </ul>
                     </div>
@@ -314,10 +314,10 @@
             const ctx = document.getElementById('progressChart').getContext('2d');
 
             const initialData = {
-                labels: ['2025-03-02', '2025-03-03', '2025-03-04', '2025-03-05','2025-03-06', '2025-03-07', '2025-03-08', '2025-03-09','2025-03-10', '2025-03-11', '2025-03-12', '2025-03-13','2025-03-14', '2025-03-15', '2025-03-16', '2025-03-17','2025-03-18', '2025-03-19', '2025-03-20', '2025-03-21','2025-03-22', '2025-03-23', '2025-03-24', '2025-03-25','2025-03-26', '2025-03-27', '2025-03-28', '2025-03-29','2025-03-30', '2025-03-31', '2025-04-01', '2025-04-02','2025-04-03', '2025-04-04', '2025-04-05', '2025-04-06','2025-04-07', '2025-04-08', '2025-04-09', '2025-04-10','2025-04-11', '2025-04-12', '2025-04-13', '2025-04-14','2025-04-15', '2025-04-16', '2025-04-17', '2025-04-18','2025-04-19', '2025-04-20', '2025-04-21', '2025-04-22','2025-04-23', '2025-04-24', '2025-04-25', '2025-04-26','2025-04-27', '2025-04-28', '2025-04-29', '2025-04-30','2025-05-01', '2025-05-02', '2025-05-03', '2025-05-04','2025-05-05', '2025-05-06', '2025-05-07', '2025-05-08','2025-05-09', '2025-05-10', '2025-05-11', '2025-05-12','2025-05-13', '2025-05-14', '2025-05-15', '2025-05-16','2025-05-17', '2025-05-18', '2025-05-19', '2025-05-20','2025-05-21', '2025-05-22', '2025-05-23', '2025-05-24','2025-05-25', '2025-05-26', '2025-05-27', '2025-05-28','2025-05-29', '2025-05-30', '2025-05-31', '2025-06-01','2025-06-02', '2025-06-03', '2025-06-04', '2025-06-05','2025-06-06', '2025-06-07', '2025-06-08'],
+                labels: ['2025-03-02', '2025-03-03', '2025-03-04', '2025-03-05','2025-03-06', '2025-03-07', '2025-03-08', '2025-03-09','2025-03-10', '2025-03-11', '2025-03-12', '2025-03-13','2025-03-14', '2025-03-15', '2025-03-16', '2025-03-17','2025-03-18', '2025-03-19', '2025-03-20', '2025-03-21','2025-03-22', '2025-03-23', '2025-03-24', '2025-03-25','2025-03-26', '2025-03-27', '2025-03-28', '2025-03-29','2025-03-30', '2025-03-31', '2025-04-01', '2025-04-02','2025-04-03', '2025-04-04', '2025-04-05', '2025-04-06','2025-04-07', '2025-04-08', '2025-04-09', '2025-04-10','2025-04-11', '2025-04-12', '2025-04-13', '2025-04-14','2025-04-15', '2025-04-16', '2025-04-17', '2025-04-18','2025-04-19', '2025-04-20', '2025-04-21', '2025-04-22','2025-04-23', '2025-04-24', '2025-04-25', '2025-04-26','2025-04-27', '2025-04-28', '2025-04-29', '2025-04-30','2025-05-01', '2025-05-02', '2025-05-03', '2025-05-04','2025-05-05', '2025-05-06', '2025-05-07', '2025-05-08','2025-05-09', '2025-05-10', '2025-05-11', '2025-05-12','2025-05-13', '2025-05-14', '2025-05-15', '2025-05-16','2025-05-17', '2025-05-18', '2025-05-19', '2025-05-20','2025-05-21', '2025-05-22', '2025-05-23', '2025-05-24','2025-05-25', '2025-05-26', '2025-05-27', '2025-05-28','2025-05-29', '2025-05-30', '2025-05-31', '2025-06-01','2025-06-02', '2025-06-03', '2025-06-04', '2025-06-05','2025-06-06', '2025-06-07', '2025-06-08', '2025-06-09'],
                 planned: [10,20,30,40,50,60,70,80,90,100,110,120,130,140,150,160,170,180,190,200,210,220,230,240,250,260,270,280,290,300,310,320,330,340,350,360,370,380,390,400,410,420,430,440,450,460,470,480,490,500,510,520,530,540,550,560,570,580,590,600,610,620,630,640,650,660,670,680,690,700,710,720,730,740,750,760,770,780,790,800,810,820,830,840,850,860,870,880,890,900,910,920,930,940,950,960,970,980,990,1000],
                 actual: [12,26,38,50,60,64,69,82,88,96,103,109,117,123,135,145,155,163,171,176,187,201,207,218,223,229,233,243,257,268,280,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null],
-                baseForecast: [null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,280,290,300,310,320,330,340,350,360,370,380,390,400,410,420,430,440,450,460,470,480,490,500,510,520,530,540,550,560,570,580,590,600,610,620,630,640,650,660,670,680,690,700,710,720,730,740,750,760,770,780,790,800,810,820,830,840,850,860,870,880,890,900,910,920,930,940,950,960,970]
+                baseForecast: [null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,280,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,580,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,890,null,null,null,null,null,null,null,null]
 
             };
             
@@ -354,7 +354,7 @@
                 let lastActualValue = initialData.actual[actualEndIndex];
 
                 for (let i = actualEndIndex + 1; i < mitigated.length; i++) {
-                    const baseIncrement = baseForecast[i] - baseForecast[i-1];
+                    const baseIncrement = 10;
                     const mitigatedIncrement = baseIncrement * overallFactor;
                     lastActualValue += mitigatedIncrement;
                     mitigated[i] = lastActualValue;
@@ -441,11 +441,11 @@
                     data: initialData.baseForecast,
                     borderColor: '#f59e0b', // amber-500
                     backgroundColor: 'rgba(245, 158, 11, 0.1)',
-                    borderWidth: 2,
+                    borderWidth: 4,
                     borderDash: [5, 5],
-                    pointRadius: 0,
+                    pointRadius: 2,
                     tension: 0.1,
-                    fill: false,
+                    fill: true,
                 }, {
                     label: 'Pirimid Forecast',
                     data: [],
@@ -546,7 +546,7 @@
                 suggestionLoading.classList.remove('hidden');
                 getMitigationBtn.disabled = true;
 
-                suggestionContent.innerHTML = '<p class="text-black-500"><strong>Primary Delay: </strong>Detailed analysis indicate primary driver of delays is lack of driving 30min wait time per day, including a 5hr delay on March 5th. Ensuring an inventory of at least 14 panels at the start of each day will prevent delays in the future.</p><div class="text-black-500 mr-3 mt-1""></p><strong>Productivity: </strong>Panel installation productivity is slightly underperforming plan while working time is meeting plan.</div></p><div class="text-black-500 mr-3 mt-1""><strong>Urgency: </strong>Mitigating action required in next 2 weeks or project will not deliver schedule. </div> </p>';
+                suggestionContent.innerHTML = '<p class="text-black-500"><strong>Primary Delay: </strong>Detailed analysis indicate primary driver of delays is lack of driving 30min wait time per day, including a 5hr delay on March 5th. Ensuring an inventory of at least 14 panels at the start of each day will prevent delays in the future.</p><div class="text-black-500 mr-3 mt-1""></p><strong>Productivity: </strong>Panel installation productivity is underperforming plan by 8% while working time is exceeding plan by 2%.</div></p><div class="text-black-500 mr-3 mt-1""><strong>Urgency: </strong>Mitigating action required in next 2 weeks or project will not deliver schedule. </div> </p>';
 
                 
             });
