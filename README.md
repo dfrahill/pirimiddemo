@@ -1,2 +1,2 @@
 # pirimiddemo
-Test of a web hosted app html
+Working front page to pirimid.ai website with interactive graphic.
