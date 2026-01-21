@@ -123,13 +123,23 @@
 
     <!-- Hero Section -->
     <main>
-        <section class="py-20 md:py-32 text-center bg-white">
+        <section class="py-20 md:py-20 text-center bg-white">
             <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-                <h1 class="text-4xl md:text-6xl font-extrabold text-slate-900 leading-tight">
+                <h1 class="text-4xl md:text-5xl font-extrabold text-slate-900 leading-tight">
                     Building the Future of Construction <span class="text-sky-500">Intelligence</span>.
                 </h1>
+                <div class="mt-8">
+                    <div class="relative">
+                        <!-- Added Hero Image with text -->
+                        <img 
+                            src="construction_hero.jpg" 
+                            alt="Construction Intelligence Data Analytics" 
+                            class="mx-auto rounded-xl shadow-2xl border border-slate-100 w-full max-w-full md:max-w-lg lg:max-w-2xl h-auto"
+                        />
+                    </div>
+            </div>
                 <p class="mt-6 max-w-2xl mx-auto text-lg text-slate-600">
-                    Pirimid provides continuous real-time data twins of construction operations, turning complex project data into clear, actionable insights to compress schedule and improve predictability backed by operations science.
+                    Pirimid provides Industry 4.0 capabilities for construction, turning large amounts of complex project data into clear, actionable insights to compress schedule and improve predictability backed by operations science.
                 </p>
                 <div class="mt-8">
                     <p class="mt-6 max-w-2xl mx-auto text-lg text-slate-600">
@@ -170,16 +180,16 @@
             <div class="container mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="text-center">
                     <h2 class="section-title">The Pirimid Platform</h2>
-                    <p class="section-subtitle">We close the loop between plan and reality with powerful data twins: Real-Time Google Maps directions for your construction activities roadmap.</p>
+                    <p class="section-subtitle">We close the loop between plan and reality with powerful real-time models. A data model of sensors and project info enables real-time detection of blockers and alternatives - Google Maps navigation for construction.</p>
                 </div>
                 <div class="mt-12 grid md:grid-cols-2 gap-12 items-center">
                     <div class="prose lg:prose-lg text-slate-600">
                         <p><strong>Real-Time Digital Twin</strong></p>
-                        <p>Pirimid creates a live, data-rich model of your construction site's operations to see what is or is not happening in real-time, not weeks later. Leverage connected project and sensor data to benchmark and track key processes. 
+                        <p>Pirimid creates a live, data-rich model of your construction site's operations to see what is or is not happening in real-time, not weeks later. Leverage connected project and sensor data to track and assess key processes. 
                         <p class="mt-2"><strong>AI-Powered Insights</strong></p>
                         <p>Our platform doesn't just show you data; it interprets it. AI/ML-enabled alerts automatically notify you when an operation is blocked, weather impacted, or trending off-track and suggest potential mitigations before a small issue becomes a major delay.</p>
                         <p class="mt-2"><strong>Why Now?</strong></p>
-                        <p>The convergence of increasingly connected equipment and powerful AI capabilities have created the perfect moment. The same technological shift transformed manufacturing 15 years ago, creating billion-dollar companies. Construction is next.</p>
+                        <p>The convergence of increasingly connected equipment and powerful AI capabilities have created the perfect moment to enable same technological shift transformed manufacturing 15 years ago, creating billion-dollar companies. Construction is next.</p>
                     </div>
                      <div class="bg-slate-100 p-8 rounded-lg border border-slate-200">
                         <h4 class="text-xl font-bold text-slate-800 mb-4">Core Features</h4>
@@ -198,7 +208,7 @@
                             </li>
                             <li class="flex items-start">
                                 <span class="text-sky-500 mr-3 mt-1">&#10004;</span>
-                                <div><strong class="text-slate-700">Interactive Scenario Planning:</strong> Model the effect of mitigations to find the best path forward to reach optimal outcomes.</div>
+                                <div><strong class="text-slate-700">Interactive Scenario Planning:</strong> Model the effect of mitigations and leverage optimization capabilities to find the best path forward to reach optimal outcomes.</div>
                             </li>
                             <li class="flex items-start">
                                 <span class="text-sky-500 mr-3 mt-1">&#10004;</span>
@@ -215,7 +225,7 @@
             <div class="container mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="text-center">
                     <h2 class="section-title">Experience the Pirimid Advantage</h2>
-                    <p class="section-subtitle">This is more than a report; it's a command center. The interactive dashboard below simulates how a project manager uses Pirimid to analyze exterior panel installation. Adjust the operational levers to see how you can proactively steer your project back on track days or weeks before traditional reporting.</p>
+                    <p class="section-subtitle">This is more than a report; it's a command center. The interactive dashboard below simulates how a project manager uses Pirimid to analyze a welding operation. Adjust the operational levers to see how you can proactively steer your project back on track days or weeks before traditional reporting.</p>
                 </div>
 
                 <div class="mt-12 bg-white p-6 md:p-8 rounded-xl shadow-2xl border border-slate-200">
@@ -243,7 +253,7 @@
                                     </div>
                                 </div>
                                 <div>
-                                    <label for="panelInstallTime" class="block font-medium text-slate-700">Panel Install Time (min/panel)</label>
+                                    <label for="panelInstallTime" class="block font-medium text-slate-700">Weld Duration (min/weld)</label>
                                      <div class="flex items-center space-x-4">
                                         <input type="range" id="panelInstallTime" min="35" max="65" step="1" value="50" class="w-full h-2 bg-slate-200 rounded-lg appearance-none cursor-pointer">
                                         <span id="panelInstallTimeValue" class="font-bold text-sky-600 w-16 text-center text-lg">50</span>
@@ -510,7 +520,7 @@
                         y: {
                             title: {
                                 display: true,
-                                text: 'Panels Installed',
+                                text: 'Welds Complete',
                                 color: '#334155', // slate-700
                                 font: {
                                     weight: 'bold'
@@ -549,7 +559,7 @@
                 suggestionLoading.classList.remove('hidden');
                 getMitigationBtn.disabled = true;
 
-                suggestionContent.innerHTML = '<p class="text-black-500"><strong>Primary Delay: </strong>Detailed analysis indicate primary driver of delays is lack of driving 30min wait time per day, including a 5hr delay on March 5th. Ensuring an inventory of at least 14 panels at the start of each day will prevent delays in the future.</p><div class="text-black-500 mr-3 mt-1""></p><strong>Productivity: </strong>Panel installation productivity is underperforming plan by 8% while working time is exceeding plan by 2%.</div></p><div class="text-black-500 mr-3 mt-1""><strong>Urgency: </strong>Mitigating action required in next 2 weeks or project will not deliver schedule. </div> </p>';
+                suggestionContent.innerHTML = '<p class="text-black-500"><strong>Primary Delay: </strong>Detailed analysis indicate primary driver of delays is lack of materials driving 30min wait time per day, including a 5hr delay on March 5th. Ensuring an inventory of at least 14 panels at the start of each day will reduce average wait by 90%.</p><div class="text-black-500 mr-3 mt-1""></p><strong>Productivity: </strong>Panel installation productivity is underperforming plan by 8% while working time is exceeding plan by 2%.</div></p><div class="text-black-500 mr-3 mt-1""><strong>Urgency: </strong>Mitigating action required in next 2 weeks or project will not deliver schedule. </div> </p>';
 
                 
             });
