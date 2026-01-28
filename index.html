@@ -1,9 +1,11 @@
 <!DOCTYPE html>
 <html lang="en" class="scroll-smooth">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pirimid | Revolutionizing Construction Productivity</title>
+    <link rel="icon" type="image/png" href="PirimidLogo.png">
     <!-- Chosen Palette: Corporate Blue & Neutrals -->
     <!-- Application Structure Plan: A narrative, single-page scrolling application that guides the user from the high-level business case to a tangible, interactive product demonstration. The structure is thematic: Hero, The Big Picture (Problem/Market/Opportunity), The Solution (Product), Interactive Demo, and Competition. This flow is designed to first convince the user of the "why" (the business case) and then let them experience the "how" (the product's value) through direct interaction. The interactive demo with sliders directly showcases the "Scenario Analysis" feature, making the core value proposition tangible and more impactful than a static image. -->
     <!-- Visualization & Content Choices: The core of the application is the interactive demo. Report Info: Forecasting example. Goal: Compare, Change, Relate. Viz/Method: A Chart.js line chart to show multiple forecasts, HTML/Tailwind metric cards for key stats, and HTML range sliders for user input. Interaction: User manipulates sliders for operational variables (e.g., Equipment Hours). JS listeners recalculate a "Mitigated Forecast" and update both the chart and metric cards in real-time. Justification: This transforms the static PDF example into a dynamic "what-if" tool, directly demonstrating Pirimid's value in a memorable way. Other report data (market size, problem stats) are presented as clear, static "stat-cards" for quick comprehension. -->
@@ -16,43 +18,57 @@
     <style>
         body {
             font-family: 'Inter', sans-serif;
-            background-color: #f8fafc; /* slate-50 */
-            color: #1e293b; /* slate-800 */
+            background-color: #f8fafc;
+            /* slate-50 */
+            color: #1e293b;
+            /* slate-800 */
         }
+
         .section-title {
             font-size: 2.25rem;
             font-weight: 800;
             line-height: 1.2;
-            color: #0f172a; /* slate-900 */
+            color: #0f172a;
+            /* slate-900 */
         }
+
         .section-subtitle {
             font-size: 1.125rem;
-            color: #475569; /* slate-600 */
+            color: #475569;
+            /* slate-600 */
             max-width: 60ch;
             margin: 1rem auto 0;
         }
+
         .stat-card {
             background-color: white;
             border-radius: 0.75rem;
             padding: 1.5rem;
             box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
-            border: 1px solid #e2e8f0; /* slate-200 */
+            border: 1px solid #e2e8f0;
+            /* slate-200 */
             transition: transform 0.2s, box-shadow 0.2s;
         }
+
         .stat-card:hover {
             transform: translateY(-4px);
             box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -2px rgb(0 0 0 / 0.1);
         }
+
         .stat-value {
             font-size: 3rem;
             font-weight: 800;
-            color: #0ea5e9; /* sky-500 */
+            color: #0ea5e9;
+            /* sky-500 */
         }
+
         .stat-label {
             font-size: 1rem;
             font-weight: 500;
-            color: #475569; /* slate-600 */
+            color: #475569;
+            /* slate-600 */
         }
+
         .chart-container {
             position: relative;
             width: 100%;
@@ -62,32 +78,38 @@
             height: 300px;
             max-height: 400px;
         }
+
         @media (min-width: 768px) {
             .chart-container {
                 height: 400px;
                 max-height: 500px;
             }
         }
+
         input[type="range"]::-webkit-slider-thumb {
             -webkit-appearance: none;
             appearance: none;
             width: 20px;
             height: 20px;
-            background: #0ea5e9; /* sky-500 */
+            background: #0ea5e9;
+            /* sky-500 */
             border-radius: 50%;
             cursor: pointer;
             border: 2px solid white;
             box-shadow: 0 0 5px rgba(14, 165, 233, 0.5);
         }
+
         input[type="range"]::-moz-range-thumb {
             width: 20px;
             height: 20px;
-            background: #0ea5e9; /* sky-500 */
+            background: #0ea5e9;
+            /* sky-500 */
             border-radius: 50%;
             cursor: pointer;
             border: 2px solid white;
             box-shadow: 0 0 5px rgba(14, 165, 233, 0.5);
         }
+
         .loading-spinner {
             border: 4px solid rgba(255, 255, 255, 0.3);
             border-top: 4px solid #0ea5e9;
@@ -96,12 +118,19 @@
             height: 24px;
             animation: spin 1s linear infinite;
         }
+
         @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
         }
     </style>
 </head>
+
 <body class="antialiased">
 
     <!-- Header -->
@@ -116,7 +145,9 @@
                     <a href="#solution" class="text-slate-600 hover:text-sky-500 transition-colors">Solution</a>
                     <a href="#demo" class="text-slate-600 hover:text-sky-500 transition-colors">Interactive Demo</a>
                 </div>
-                <a href="#contact" class="bg-sky-500 text-white px-4 py-2 rounded-lg font-semibold hover:bg-sky-600 transition-colors">Contact Us</a>
+                <a href="#contact"
+                    class="bg-sky-500 text-white px-4 py-2 rounded-lg font-semibold hover:bg-sky-600 transition-colors">Contact
+                    Us</a>
             </div>
         </nav>
     </header>
@@ -131,21 +162,23 @@
                 <div class="mt-8">
                     <div class="relative">
                         <!-- Added Hero Image with text -->
-                        <img 
-                            src="construction_hero.jpg" 
-                            alt="Construction Intelligence Data Analytics" 
-                            class="mx-auto rounded-xl shadow-2xl border border-slate-100 w-full max-w-full md:max-w-lg lg:max-w-2xl h-auto"
-                        />
+                        <img src="construction_hero.jpg" alt="Construction Intelligence Data Analytics"
+                            class="mx-auto rounded-xl shadow-2xl border border-slate-100 w-full max-w-full md:max-w-lg lg:max-w-2xl h-auto" />
                     </div>
-            </div>
+                </div>
                 <p class="mt-6 max-w-2xl mx-auto text-lg text-slate-600">
-                    Pirimid provides Industry 4.0 capabilities for construction, turning large amounts of complex project data into clear, actionable insights to compress schedule and improve predictability backed by operations science.
+                    Pirimid provides Industry 4.0 capabilities for construction, turning large amounts of complex
+                    project data into clear, actionable insights to compress schedule and improve predictability backed
+                    by operations science.
                 </p>
                 <div class="mt-8">
                     <p class="mt-6 max-w-2xl mx-auto text-lg text-slate-600">
-                    Take the first step - <span class="text-blue-900"><em><strong>Save one day of schedule on one activity</strong></em></span>
+                        Take the first step - <span class="text-blue-900"><em><strong>Save one day of schedule on one
+                                    activity</strong></em></span>
                     </p>
-                    <a href="#demo" class="mt-2 bg-sky-500 text-white px-8 py-3 rounded-lg font-bold text-lg hover:bg-sky-600 transition-transform hover:scale-105 inline-block">Explore the Demo</a>
+                    <a href="#demo"
+                        class="mt-2 bg-sky-500 text-white px-8 py-3 rounded-lg font-bold text-lg hover:bg-sky-600 transition-transform hover:scale-105 inline-block">Explore
+                        the Demo</a>
                 </div>
             </div>
         </section>
@@ -154,22 +187,26 @@
         <section id="overview" class="py-16 md:py-24">
             <div class="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
                 <h2 class="section-title">An Industry Ready for Advancement</h2>
-                <p class="section-subtitle">Construction has struggled with productivity for decades. The market is massive, and the cost of inefficiency is staggering.</p>
+                <p class="section-subtitle">Construction has struggled with productivity for decades. The market is
+                    massive, and the cost of inefficiency is staggering.</p>
                 <div class="mt-12 grid gap-8 md:grid-cols-3">
                     <div class="stat-card text-center">
                         <div class="stat-value text-red-500">62%</div>
                         <div class="stat-label mt-2">Average Mega-Project Overrun</div>
-                        <p class="text-sm text-slate-500 mt-2">Legacy methods fail to explain why projects fall behind, creating massive risk in planning and execution.</p>
+                        <p class="text-sm text-slate-500 mt-2">Legacy methods fail to explain why projects fall behind,
+                            creating massive risk in planning and execution.</p>
                     </div>
                     <div class="stat-card text-center">
                         <div class="stat-value">$1.2T</div>
                         <div class="stat-label mt-2">Non-Residential US Market</div>
-                        <p class="text-sm text-slate-500 mt-2">Part of a $10T+ global industry, representing a vast landscape for efficiency gains.</p>
+                        <p class="text-sm text-slate-500 mt-2">Part of a $10T+ global industry, representing a vast
+                            landscape for efficiency gains.</p>
                     </div>
                     <div class="stat-card text-center">
                         <div class="stat-value">5%-40%</div>
                         <div class="stat-label mt-2">Cost & Schedule Reduction</div>
-                        <p class="text-sm text-slate-500 mt-2">Applying manufacturing operations science principles with Pirimid can unlock huge savings.</p>
+                        <p class="text-sm text-slate-500 mt-2">Applying manufacturing operations science principles with
+                            Pirimid can unlock huge savings.</p>
                     </div>
                 </div>
             </div>
@@ -180,39 +217,56 @@
             <div class="container mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="text-center">
                     <h2 class="section-title">The Pirimid Platform</h2>
-                    <p class="section-subtitle">We close the loop between plan and reality with powerful real-time models. A data model of sensors and project info enables real-time detection of blockers and alternatives - Google Maps navigation for construction.</p>
+                    <p class="section-subtitle">We close the loop between plan and reality with powerful real-time
+                        models. A data model of sensors and project info enables real-time detection of blockers and
+                        alternatives - Google Maps navigation for construction.</p>
                 </div>
                 <div class="mt-12 grid md:grid-cols-2 gap-12 items-center">
                     <div class="prose lg:prose-lg text-slate-600">
                         <p><strong>Real-Time Digital Twin</strong></p>
-                        <p>Pirimid creates a live, data-rich model of your construction site's operations to see what is or is not happening in real-time, not weeks later. Leverage connected project and sensor data to track and assess key processes. 
+                        <p>Pirimid creates a live, data-rich model of your construction site's operations to see what is
+                            or is not happening in real-time, not weeks later. Leverage connected project and sensor
+                            data to track and assess key processes.
                         <p class="mt-2"><strong>AI-Powered Insights</strong></p>
-                        <p>Our platform doesn't just show you data; it interprets it. AI/ML-enabled alerts automatically notify you when an operation is blocked, weather impacted, or trending off-track and suggest potential mitigations before a small issue becomes a major delay.</p>
+                        <p>Our platform doesn't just show you data; it interprets it. AI/ML-enabled alerts automatically
+                            notify you when an operation is blocked, weather impacted, or trending off-track and suggest
+                            potential mitigations before a small issue becomes a major delay.</p>
                         <p class="mt-2"><strong>Why Now?</strong></p>
-                        <p>The convergence of increasingly connected equipment and powerful AI capabilities have created the perfect moment to enable same technological shift transformed manufacturing 15 years ago, creating billion-dollar companies. Construction is next.</p>
+                        <p>The convergence of increasingly connected equipment and powerful AI capabilities have created
+                            the perfect moment to enable same technological shift transformed manufacturing 15 years
+                            ago, creating billion-dollar companies. Construction is next.</p>
                     </div>
-                     <div class="bg-slate-100 p-8 rounded-lg border border-slate-200">
+                    <div class="bg-slate-100 p-8 rounded-lg border border-slate-200">
                         <h4 class="text-xl font-bold text-slate-800 mb-4">Core Features</h4>
                         <ul class="space-y-4">
                             <li class="flex items-start">
                                 <span class="text-sky-500 mr-3 mt-1">&#10004;</span>
-                                <div><strong class="text-slate-700">Live Progress Tracking:</strong> Compare performance against plan continuously. AI identifies potential delays and send alerts before they happen.</div>
+                                <div><strong class="text-slate-700">Live Progress Tracking:</strong> Compare performance
+                                    against plan continuously. AI identifies potential delays and send alerts before
+                                    they happen.</div>
                             </li>
                             <li class="flex items-start">
                                 <span class="text-sky-500 mr-3 mt-1">&#10004;</span>
-                                <div><strong class="text-slate-700">Productivity Root Causes:</strong> Use continuous data to separate execution from blockers and get to the "why" behind variances at the task level.</div>
+                                <div><strong class="text-slate-700">Productivity Root Causes:</strong> Use continuous
+                                    data to separate execution from blockers and get to the "why" behind variances at
+                                    the task level.</div>
                             </li>
                             <li class="flex items-start">
                                 <span class="text-sky-500 mr-3 mt-1">&#10004;</span>
-                                <div><strong class="text-slate-700">Predictive Forecasting:</strong> See the future impact and potential risk of today's performance. Don't be surprised.</div>
+                                <div><strong class="text-slate-700">Predictive Forecasting:</strong> See the future
+                                    impact and potential risk of today's performance. Don't be surprised.</div>
                             </li>
                             <li class="flex items-start">
                                 <span class="text-sky-500 mr-3 mt-1">&#10004;</span>
-                                <div><strong class="text-slate-700">Interactive Scenario Planning:</strong> Model the effect of mitigations and leverage optimization capabilities to find the best path forward to reach optimal outcomes.</div>
+                                <div><strong class="text-slate-700">Interactive Scenario Planning:</strong> Model the
+                                    effect of mitigations and leverage optimization capabilities to find the best path
+                                    forward to reach optimal outcomes.</div>
                             </li>
                             <li class="flex items-start">
                                 <span class="text-sky-500 mr-3 mt-1">&#10004;</span>
-                                <div><strong class="text-slate-700">Automated Benchmarking:</strong> Assess performance relative to internal and external projects or technologies in real-time. Stop guessing, learn what works.</div>
+                                <div><strong class="text-slate-700">Automated Benchmarking:</strong> Assess performance
+                                    relative to internal and external projects or technologies in real-time. Stop
+                                    guessing, learn what works.</div>
                             </li>
                         </ul>
                     </div>
@@ -225,7 +279,10 @@
             <div class="container mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="text-center">
                     <h2 class="section-title">Experience the Pirimid Advantage</h2>
-                    <p class="section-subtitle">This is more than a report; it's a command center. The interactive dashboard below simulates how a project manager uses Pirimid to analyze a welding operation. Adjust the operational levers to see how you can proactively steer your project back on track days or weeks before traditional reporting.</p>
+                    <p class="section-subtitle">This is more than a report; it's a command center. The interactive
+                        dashboard below simulates how a project manager uses Pirimid to analyze a welding operation.
+                        Adjust the operational levers to see how you can proactively steer your project back on track
+                        days or weeks before traditional reporting.</p>
                 </div>
 
                 <div class="mt-12 bg-white p-6 md:p-8 rounded-xl shadow-2xl border border-slate-200">
@@ -239,24 +296,33 @@
                             <h4 class="text-lg font-bold text-slate-800 mb-4">Scenario Controls</h4>
                             <div class="space-y-6">
                                 <div>
-                                    <label for="equipmentHours" class="block font-medium text-slate-700">Working Time (hrs/day)</label>
+                                    <label for="equipmentHours" class="block font-medium text-slate-700">Working Time
+                                        (hrs/day)</label>
                                     <div class="flex items-center space-x-4">
-                                        <input type="range" id="equipmentHours" min="7" max="11" step="0.25" value="9" class="w-full h-2 bg-slate-200 rounded-lg appearance-none cursor-pointer">
-                                        <span id="equipmentHoursValue" class="font-bold text-sky-600 w-16 text-center text-lg">9.00</span>
+                                        <input type="range" id="equipmentHours" min="7" max="11" step="0.25" value="9"
+                                            class="w-full h-2 bg-slate-200 rounded-lg appearance-none cursor-pointer">
+                                        <span id="equipmentHoursValue"
+                                            class="font-bold text-sky-600 w-16 text-center text-lg">9.00</span>
                                     </div>
                                 </div>
                                 <div>
-                                    <label for="removalRates" class="block font-medium text-slate-700">Average Wait (min/day)</label>
-                                     <div class="flex items-center space-x-4">
-                                        <input type="range" id="removalRates" min="0" max="60" step="1" value="30" class="w-full h-2 bg-slate-200 rounded-lg appearance-none cursor-pointer">
-                                        <span id="removalRatesValue" class="font-bold text-sky-600 w-16 text-center text-lg">30</span>
+                                    <label for="removalRates" class="block font-medium text-slate-700">Average Wait
+                                        (min/day)</label>
+                                    <div class="flex items-center space-x-4">
+                                        <input type="range" id="removalRates" min="0" max="60" step="1" value="30"
+                                            class="w-full h-2 bg-slate-200 rounded-lg appearance-none cursor-pointer">
+                                        <span id="removalRatesValue"
+                                            class="font-bold text-sky-600 w-16 text-center text-lg">30</span>
                                     </div>
                                 </div>
                                 <div>
-                                    <label for="panelInstallTime" class="block font-medium text-slate-700">Weld Duration (min/weld)</label>
-                                     <div class="flex items-center space-x-4">
-                                        <input type="range" id="panelInstallTime" min="35" max="65" step="1" value="50" class="w-full h-2 bg-slate-200 rounded-lg appearance-none cursor-pointer">
-                                        <span id="panelInstallTimeValue" class="font-bold text-sky-600 w-16 text-center text-lg">50</span>
+                                    <label for="panelInstallTime" class="block font-medium text-slate-700">Weld Duration
+                                        (min/weld)</label>
+                                    <div class="flex items-center space-x-4">
+                                        <input type="range" id="panelInstallTime" min="35" max="65" step="1" value="50"
+                                            class="w-full h-2 bg-slate-200 rounded-lg appearance-none cursor-pointer">
+                                        <span id="panelInstallTimeValue"
+                                            class="font-bold text-sky-600 w-16 text-center text-lg">50</span>
                                     </div>
                                 </div>
                             </div>
@@ -266,7 +332,8 @@
                             <div class="text-slate-300 text-lg font-medium">Projected End Date Variance</div>
                             <div id="endDateVariance" class="text-5xl font-extrabold mt-2 text-amber-400">-15 Days</div>
                             <div class="text-slate-400 mt-2">from Plan</div>
-                            <button id="getMitigationBtn" class="mt-6 bg-sky-500 text-white px-6 py-2 rounded-lg font-semibold hover:bg-sky-600 transition-colors flex items-center justify-center">
+                            <button id="getMitigationBtn"
+                                class="mt-6 bg-sky-500 text-white px-6 py-2 rounded-lg font-semibold hover:bg-sky-600 transition-colors flex items-center justify-center">
                                 Get AI Mitigation Suggestions ✨
                             </button>
                         </div>
@@ -275,7 +342,7 @@
                         <h4 class="text-lg font-bold text-sky-800 mb-4">AI Mitigation Suggestions</h4>
                         <div id="suggestionContent" class="text-slate-700"></div>
                         <div id="suggestionLoading" class="hidden flex items-center justify-center py-4">
-                            
+
                         </div>
                     </div>
                 </div>
@@ -286,12 +353,21 @@
         <section class="py-16 md:py-24 bg-white">
             <div class="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
                 <h2 class="section-title">A Clear Competitive Edge</h2>
-                <p class="section-subtitle">Other solutions provide an incomplete picture. Pirimid is built to deliver not just data, but frequent, actionable intelligence that directly links to project outcomes through operations science.</p>
+                <p class="section-subtitle">Other solutions provide an incomplete picture. Pirimid is built to deliver
+                    not just data, but frequent, actionable intelligence that directly links to project outcomes through
+                    operations science.</p>
                 <div class="mt-12 max-w-4xl mx-auto prose lg:prose-lg text-slate-600 text-left">
-                    <p>The primary competition comes from computer vision companies. These platforms are excellent at measuring what has been built. However, they often leave gaps in two critical areas:</p>
+                    <p>The primary competition comes from computer vision companies. These platforms are excellent at
+                        measuring what has been built. However, they often leave gaps in two critical areas:</p>
                     <ul style="list-style-type: square;">
-                        <li class="mt-1" style="margin-left: 20px;margin-right: 20px;"><strong>Frequency:</strong> Data capture can be periodic, missing the day-to-day operational blockers and conflicts that lead to deviations. Pirimid's digital twin is designed for higher frequency data streams.</li>
-                        <li class="mt-1" style="margin-left: 20px;margin-right: 20px;"><strong>Actionable Insights:</strong> A photo or a 3D model shows progress, but it doesn't always provide sufficient context to explain a delay or model the impact of a potential solution. Pirimid links operational data with project documentation to decompose effects and highlight blockers enabling true cause-and-effect analysis for proactive planning.</li>
+                        <li class="mt-1" style="margin-left: 20px;margin-right: 20px;"><strong>Frequency:</strong> Data
+                            capture can be periodic, missing the day-to-day operational blockers and conflicts that lead
+                            to deviations. Pirimid's digital twin is designed for higher frequency data streams.</li>
+                        <li class="mt-1" style="margin-left: 20px;margin-right: 20px;"><strong>Actionable
+                                Insights:</strong> A photo or a 3D model shows progress, but it doesn't always provide
+                            sufficient context to explain a delay or model the impact of a potential solution. Pirimid
+                            links operational data with project documentation to decompose effects and highlight
+                            blockers enabling true cause-and-effect analysis for proactive planning.</li>
                     </ul>
                 </div>
             </div>
@@ -301,14 +377,19 @@
         <section id="contact" class="py-16 md:py-24 bg-slate-100">
             <div class="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
                 <h2 class="section-title">Get In Touch</h2>
-                <p class="section-subtitle">Have questions or want to learn more about how to partner with Pirimid on your construction projects? Reach out to us directly.</p>
+                <p class="section-subtitle">Have questions or want to learn more about how to partner with Pirimid on
+                    your construction projects? Reach out to us directly.</p>
 
                 <div class="mt-12 max-w-lg mx-auto bg-white p-8 rounded-xl shadow-2xl border border-slate-200">
                     <div id="contactInfo" class="text-center">
-                        <p class="text-lg text-slate-700 mb-4">Reach out to <a href="mailto:info@pirimid.ai" class="text-sky-600 hover:underline font-semibold">info@pirimid.ai</a> for more information.</p>
-                        <div><a href="https://outlook.office.com/bookwithme/user/eebf449ecb4a4f21aa110c9e32b4372d@pirimid.ai/meetingtype/E-ACKoS-n0i6RWnuAx4Dyw2?bookingcode=c9f47e12-5e83-434a-94f2-6e7e44829a53&anonymous&ismsaljsauthenabled&ep=mlink" class="mt-4 bg-sky-500 text-white px-4 py-2 rounded-lg font-semibold hover:bg-sky-600 transition-colors">Book an Overview</a></div>
+                        <p class="text-lg text-slate-700 mb-4">Reach out to <a href="mailto:info@pirimid.ai"
+                                class="text-sky-600 hover:underline font-semibold">info@pirimid.ai</a> for more
+                            information.</p>
+                        <div><a href="https://outlook.office.com/bookwithme/user/eebf449ecb4a4f21aa110c9e32b4372d@pirimid.ai/meetingtype/E-ACKoS-n0i6RWnuAx4Dyw2?bookingcode=c9f47e12-5e83-434a-94f2-6e7e44829a53&anonymous&ismsaljsauthenabled&ep=mlink"
+                                class="mt-4 bg-sky-500 text-white px-4 py-2 rounded-lg font-semibold hover:bg-sky-600 transition-colors">Book
+                                an Overview</a></div>
                     </div>
-                    
+
                 </div>
             </div>
         </section>
@@ -323,17 +404,17 @@
     </footer>
 
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function () {
             const ctx = document.getElementById('progressChart').getContext('2d');
 
             const initialData = {
-                labels: ['2025-03-02', '2025-03-03', '2025-03-04', '2025-03-05','2025-03-06', '2025-03-07', '2025-03-08', '2025-03-09','2025-03-10', '2025-03-11', '2025-03-12', '2025-03-13','2025-03-14', '2025-03-15', '2025-03-16', '2025-03-17','2025-03-18', '2025-03-19', '2025-03-20', '2025-03-21','2025-03-22', '2025-03-23', '2025-03-24', '2025-03-25','2025-03-26', '2025-03-27', '2025-03-28', '2025-03-29','2025-03-30', '2025-03-31', '2025-04-01', '2025-04-02','2025-04-03', '2025-04-04', '2025-04-05', '2025-04-06','2025-04-07', '2025-04-08', '2025-04-09', '2025-04-10','2025-04-11', '2025-04-12', '2025-04-13', '2025-04-14','2025-04-15', '2025-04-16', '2025-04-17', '2025-04-18','2025-04-19', '2025-04-20', '2025-04-21', '2025-04-22','2025-04-23', '2025-04-24', '2025-04-25', '2025-04-26','2025-04-27', '2025-04-28', '2025-04-29', '2025-04-30','2025-05-01', '2025-05-02', '2025-05-03', '2025-05-04','2025-05-05', '2025-05-06', '2025-05-07', '2025-05-08','2025-05-09', '2025-05-10', '2025-05-11', '2025-05-12','2025-05-13', '2025-05-14', '2025-05-15', '2025-05-16','2025-05-17', '2025-05-18', '2025-05-19', '2025-05-20','2025-05-21', '2025-05-22', '2025-05-23', '2025-05-24','2025-05-25', '2025-05-26', '2025-05-27', '2025-05-28','2025-05-29', '2025-05-30', '2025-05-31', '2025-06-01','2025-06-02', '2025-06-03', '2025-06-04', '2025-06-05','2025-06-06', '2025-06-07', '2025-06-08', '2025-06-09'],
-                planned: [10,20,30,40,50,60,70,80,90,100,110,120,130,140,150,160,170,180,190,200,210,220,230,240,250,260,270,280,290,300,310,320,330,340,350,360,370,380,390,400,410,420,430,440,450,460,470,480,490,500,510,520,530,540,550,560,570,580,590,600,610,620,630,640,650,660,670,680,690,700,710,720,730,740,750,760,770,780,790,800,810,820,830,840,850,860,870,880,890,900,910,920,930,940,950,960,970,980,990,1000],
-                actual: [12,26,38,50,60,64,69,82,88,96,103,109,117,123,135,145,155,163,171,176,187,201,207,218,223,229,233,243,257,268,280,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null],
-                baseForecast: [null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,280,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,580,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,890,null,null,null,null,null,null,null,null]
+                labels: ['2025-03-02', '2025-03-03', '2025-03-04', '2025-03-05', '2025-03-06', '2025-03-07', '2025-03-08', '2025-03-09', '2025-03-10', '2025-03-11', '2025-03-12', '2025-03-13', '2025-03-14', '2025-03-15', '2025-03-16', '2025-03-17', '2025-03-18', '2025-03-19', '2025-03-20', '2025-03-21', '2025-03-22', '2025-03-23', '2025-03-24', '2025-03-25', '2025-03-26', '2025-03-27', '2025-03-28', '2025-03-29', '2025-03-30', '2025-03-31', '2025-04-01', '2025-04-02', '2025-04-03', '2025-04-04', '2025-04-05', '2025-04-06', '2025-04-07', '2025-04-08', '2025-04-09', '2025-04-10', '2025-04-11', '2025-04-12', '2025-04-13', '2025-04-14', '2025-04-15', '2025-04-16', '2025-04-17', '2025-04-18', '2025-04-19', '2025-04-20', '2025-04-21', '2025-04-22', '2025-04-23', '2025-04-24', '2025-04-25', '2025-04-26', '2025-04-27', '2025-04-28', '2025-04-29', '2025-04-30', '2025-05-01', '2025-05-02', '2025-05-03', '2025-05-04', '2025-05-05', '2025-05-06', '2025-05-07', '2025-05-08', '2025-05-09', '2025-05-10', '2025-05-11', '2025-05-12', '2025-05-13', '2025-05-14', '2025-05-15', '2025-05-16', '2025-05-17', '2025-05-18', '2025-05-19', '2025-05-20', '2025-05-21', '2025-05-22', '2025-05-23', '2025-05-24', '2025-05-25', '2025-05-26', '2025-05-27', '2025-05-28', '2025-05-29', '2025-05-30', '2025-05-31', '2025-06-01', '2025-06-02', '2025-06-03', '2025-06-04', '2025-06-05', '2025-06-06', '2025-06-07', '2025-06-08', '2025-06-09'],
+                planned: [10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 110, 120, 130, 140, 150, 160, 170, 180, 190, 200, 210, 220, 230, 240, 250, 260, 270, 280, 290, 300, 310, 320, 330, 340, 350, 360, 370, 380, 390, 400, 410, 420, 430, 440, 450, 460, 470, 480, 490, 500, 510, 520, 530, 540, 550, 560, 570, 580, 590, 600, 610, 620, 630, 640, 650, 660, 670, 680, 690, 700, 710, 720, 730, 740, 750, 760, 770, 780, 790, 800, 810, 820, 830, 840, 850, 860, 870, 880, 890, 900, 910, 920, 930, 940, 950, 960, 970, 980, 990, 1000],
+                actual: [12, 26, 38, 50, 60, 64, 69, 82, 88, 96, 103, 109, 117, 123, 135, 145, 155, 163, 171, 176, 187, 201, 207, 218, 223, 229, 233, 243, 257, 268, 280, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null],
+                baseForecast: [null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, 280, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, 580, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, 890, null, null, null, null, null, null, null, null]
 
             };
-            
+
             const equipmentHoursSlider = document.getElementById('equipmentHours');
             const removalRatesSlider = document.getElementById('removalRates');
             const panelInstallTimeSlider = document.getElementById('panelInstallTime'); // New slider
@@ -358,10 +439,10 @@
                 const actualEndIndex = initialData.actual.findLastIndex(v => v !== null);
                 const planHours = 9;
                 const planRate = 1;
-                
+
                 const hoursFactor = equipmentHours / planHours;
                 const rateFactor = removalRates / planRate;
-                const overallFactor = (50/panelInstallTime*(equipmentHours - removalRates /60)/10);
+                const overallFactor = (50 / panelInstallTime * (equipmentHours - removalRates / 60) / 10);
 
                 let mitigated = [...baseForecast];
                 let lastActualValue = initialData.actual[actualEndIndex];
@@ -374,27 +455,27 @@
                 }
                 return mitigated;
             }
-            
+
             function calculateEndDateVariance(mitigatedForecast) {
                 const target = 1000;
                 const planDays = 100;
-                
+
                 const lastForecastValue = mitigatedForecast[mitigatedForecast.length - 1];
                 if (lastForecastValue >= target) {
-                    return 0; 
+                    return 0;
                 }
-                
-                const dailyRate = (mitigatedForecast[mitigatedForecast.length-1] - mitigatedForecast[mitigatedForecast.length-2]) ;
+
+                const dailyRate = (mitigatedForecast[mitigatedForecast.length - 1] - mitigatedForecast[mitigatedForecast.length - 2]);
                 const remainingWork = target - lastForecastValue;
                 const daysNeeded = remainingWork / dailyRate;
-                
-                const planDailyRate = (initialData.planned[initialData.planned.length-1] - initialData.planned[initialData.planned.length-2]) ;
-                const planDaysNeeded = (target - initialData.planned[initialData.planned.length-1]) / planDailyRate;
+
+                const planDailyRate = (initialData.planned[initialData.planned.length - 1] - initialData.planned[initialData.planned.length - 2]);
+                const planDaysNeeded = (target - initialData.planned[initialData.planned.length - 1]) / planDailyRate;
 
 
-                const totalProjectedDays = (initialData.labels.length-1)  + daysNeeded;
+                const totalProjectedDays = (initialData.labels.length - 1) + daysNeeded;
                 const variance = planDays - totalProjectedDays;
-                
+
                 return Math.round(variance);
             }
 
@@ -413,7 +494,7 @@
                 const mitigatedForecast = calculateMitigatedForecast(initialData.baseForecast, equipmentHours, removalRates, panelInstallTime);
                 chart.data.datasets[3].data = mitigatedForecast;
                 chart.update();
-                
+
                 const variance = calculateEndDateVariance(mitigatedForecast);
                 endDateVarianceEl.textContent = `${variance > 0 ? '+' : ''}${variance} Days`;
                 if (variance < -10) {
@@ -495,7 +576,7 @@
                             bodySpacing: 4,
                             padding: 12,
                             callbacks: {
-                                label: function(context) {
+                                label: function (context) {
                                     let label = context.dataset.label || '';
                                     if (label) {
                                         label += ': ';
@@ -544,7 +625,7 @@
             };
 
             chart = new Chart(ctx, config);
-            
+
             equipmentHoursSlider.addEventListener('input', updateUI);
             removalRatesSlider.addEventListener('input', updateUI);
             panelInstallTimeSlider.addEventListener('input', updateUI); // Event listener for new slider
@@ -553,7 +634,7 @@
             updateUI();
 
             getMitigationBtn.addEventListener('click', () => {
-                
+
                 mitigationSuggestionsDiv.classList.remove('hidden');
                 suggestionContent.innerHTML = '';
                 suggestionLoading.classList.remove('hidden');
@@ -561,9 +642,10 @@
 
                 suggestionContent.innerHTML = '<p class="text-black-500"><strong>Primary Delay: </strong>Detailed analysis indicate primary driver of delays is lack of materials driving 30min wait time per day, including a 5hr delay on March 5th. Ensuring an inventory of at least 14 panels at the start of each day will reduce average wait by 90%.</p><div class="text-black-500 mr-3 mt-1""></p><strong>Productivity: </strong>Panel installation productivity is underperforming plan by 8% while working time is exceeding plan by 2%.</div></p><div class="text-black-500 mr-3 mt-1""><strong>Urgency: </strong>Mitigating action required in next 2 weeks or project will not deliver schedule. </div> </p>';
 
-                
+
             });
         });
     </script>
 </body>
+
 </html>
