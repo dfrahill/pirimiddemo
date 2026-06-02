@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pirimid ROI Calculator</title>
+  <link rel="icon" type="image/png" href="PirimidLogo.png">
+  <style>
+    :root {
+      --primary: #1a3a5c;
+      --accent: #2e7d9e;
+      --accent-light: #e8f4f8;
+      --green: #1e7e34;
+      --green-light: #d4edda;
+      --border: #cdd8e3;
+      --muted: #6c757d;
+      --white: #ffffff;
+      --bg: #f4f7fa;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Segoe UI', Arial, sans-serif;
+      background: var(--bg);
+      color: #222;
+      min-height: 100vh;
+      padding: 32px 16px;
+    }
+
+    a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    .container {
+      max-width: 640px;
+      margin: 0 auto;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 28px;
+    }
+
+    header .logo {
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--primary);
+      letter-spacing: 1px;
+    }
+
+    header .logo span {
+      color: var(--accent);
+    }
+
+    header h1 {
+      font-size: 20px;
+      font-weight: 600;
+      color: var(--primary);
+      margin-top: 4px;
+    }
+
+    header p {
+      font-size: 13px;
+      color: var(--muted);
+      margin-top: 6px;
+    }
+
+    .mode-toggle {
+      display: flex;
+      background: var(--white);
+      border: 2px solid var(--border);
+      border-radius: 10px;
+      overflow: hidden;
+      margin-bottom: 24px;
+    }
+
+    .mode-btn {
+      flex: 1;
+      padding: 14px 10px;
+      border: none;
+      background: transparent;
+      cursor: pointer;
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--muted);
+      transition: all 0.2s;
+      text-align: center;
+      line-height: 1.4;
+    }
+
+    .mode-btn .tag {
+      display: block;
+      font-size: 10px;
+      font-weight: 400;
+      color: var(--muted);
+      margin-top: 2px;
+    }
+
+    .mode-btn.active {
+      background: var(--primary);
+      color: var(--white);
+    }
+
+    .mode-btn.active .tag {
+      color: rgba(255, 255, 255, 0.75);
+    }
+
+    .card {
+      background: var(--white);
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      padding: 24px;
+      margin-bottom: 20px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    }
+
+    .card h2 {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--primary);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 16px;
+      padding-bottom: 8px;
+      border-bottom: 2px solid var(--accent-light);
+    }
+
+    .field {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 14px;
+      gap: 12px;
+    }
+
+    .field label {
+      font-size: 14px;
+      color: #333;
+      flex: 1;
+      min-width: 0;
+    }
+
+    .field label .hint {
+      display: block;
+      font-size: 11px;
+      color: var(--muted);
+      font-weight: 400;
+    }
+
+    .field input[type="number"] {
+      width: 130px;
+      padding: 8px 10px;
+      border: 1.5px solid var(--border);
+      border-radius: 7px;
+      font-size: 14px;
+      text-align: right;
+      color: #222;
+      transition: border-color 0.15s;
+      flex-shrink: 0;
+    }
+
+    .field input[type="number"]:focus {
+      outline: none;
+      border-color: var(--accent);
+    }
+
+    .field input[type="range"] {
+      width: 100px;
+      flex-shrink: 0;
+    }
+
+    .range-val {
+      width: 50px;
+      text-align: right;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--accent);
+      flex-shrink: 0;
+    }
+
+    .field .computed {
+      width: 130px;
+      padding: 8px 10px;
+      border: 1.5px solid var(--accent-light);
+      border-radius: 7px;
+      font-size: 14px;
+      text-align: right;
+      color: var(--accent);
+      font-weight: 600;
+      background: var(--accent-light);
+      flex-shrink: 0;
+    }
+
+    .results-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 14px;
+    }
+
+    .result-box {
+      background: var(--accent-light);
+      border-radius: 10px;
+      padding: 16px 14px;
+      text-align: center;
+      border: 1px solid #b8d9e8;
+    }
+
+    .result-box.highlight {
+      background: var(--green-light);
+      border-color: #a3d6b0;
+    }
+
+    .result-box .label {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: var(--muted);
+      margin-bottom: 6px;
+    }
+
+    .result-box .value {
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--primary);
+    }
+
+    .result-box.highlight .value {
+      color: var(--green);
+    }
+
+    .result-box .sub {
+      font-size: 11px;
+      color: var(--muted);
+      margin-top: 3px;
+    }
+
+    .results-full {
+      background: var(--green-light);
+      border: 1px solid #a3d6b0;
+      border-radius: 10px;
+      padding: 16px 14px;
+      text-align: center;
+      margin-bottom: 14px;
+    }
+
+    .results-full .label {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: var(--muted);
+      margin-bottom: 6px;
+    }
+
+    .results-full .value {
+      font-size: 28px;
+      font-weight: 700;
+      color: var(--green);
+    }
+
+    .divider {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 18px 0;
+    }
+
+    .promo-box {
+      background: var(--accent-light);
+      border: 1px solid var(--accent);
+      border-radius: 8px;
+      padding: 12px 16px;
+      text-align: center;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--primary);
+      margin-bottom: 14px;
+    }
+
+    footer {
+      text-align: center;
+      font-size: 12px;
+      color: var(--muted);
+      margin-top: 8px;
+    }
+
+    .hidden {
+      display: none !important;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+
+    <header>
+      <div class="logo"><a href="index.html"><img src="PirimidLogoWebsite.png" alt="Pirimid Logo" width="250"></a></div>
+      <h1>Welding Productivity ROI Calculator</h1>
+      <p>Estimate your return on investment from real-time arc-time monitoring</p>
+    </header>
+
+    <div class="mode-toggle">
+      <button class="mode-btn" id="btn-cost" onclick="setMode('cost')">
+        Cost-Based ROI
+        <span class="tag">Best if labor costs are the primary concern</span>
+      </button>
+      <button class="mode-btn active" id="btn-revenue" onclick="setMode('revenue')">
+        Revenue-Based ROI
+        <span class="tag">Best if you are currently capacity limited</span>
+      </button>
+    </div>
+
+    <!-- COST-BASED PANEL -->
+    <div id="panel-cost" class="hidden">
+      <div class="card">
+        <h2>Your Current Operation</h2>
+
+        <div class="field">
+          <label>Welder Hourly Rate
+            <span class="hint">Fully-loaded $/hr including benefits</span>
+          </label>
+          <input type="number" id="c-hourly-rate" value="100" min="0" oninput="calcCost()" />
+        </div>
+
+        <div class="field">
+          <label>Number of Welders</label>
+          <input type="number" id="c-welders" value="1" min="1" oninput="calcCost()" />
+        </div>
+
+        <div class="field">
+          <label>Shifts per Day</label>
+          <input type="number" id="c-shifts" value="1" min="1" max="3" oninput="calcCost()" />
+        </div>
+
+        <div class="field">
+          <label>Working Days per Year</label>
+          <input type="number" id="c-days" value="250" min="1" max="365" oninput="calcCost()" />
+        </div>
+
+        <div class="field">
+          <label>Current Arc-Time Productivity (%)
+            <span class="hint">10%–15% per <a
+                href="https://www.millerwelds.com/resources/article-library/what-is-welding-arc-on-time-and-are-you-overestimating-it#:~:text=Overestimating%20welding%20arc%2Don%20time,is%20only%2010%2D12%25."
+                target="_blank" rel="noopener noreferrer">Miller</a> and <a
+                href="https://www.thefabricator.com/thewelder/article/arcwelding/maximizing-arc-on-time#:~:text=%E2%80%9CFive%20years%20ago%2C%20the%20operator,them%20away%20from%20actually%20welding%3F"
+                target="_blank" rel="noopener noreferrer">The Fabricator</a></span>
+          </label>
+          <input type="range" id="c-current-arc" min="5" max="40" value="13" oninput="calcCost()" />
+          <span class="range-val" id="c-current-arc-val">13%</span>
+        </div>
+
+        <div class="field">
+          <label>Productivity Improvement (%)
+            <span class="hint">Expected gain from arc-time visibility</span>
+          </label>
+          <input type="range" id="c-improvement" min="0" max="20" value="10" oninput="calcCost()" />
+          <span class="range-val" id="c-improvement-val">10%</span>
+        </div>
+
+        <div class="field">
+          <label>New Arc-Time Productivity (%)
+            <span class="hint">Calculated from improvement above</span>
+          </label>
+          <div class="computed" id="c-new-arc">—</div>
+        </div>
+
+        <hr class="divider" />
+
+        <div class="promo-box">No capital expense. No installation fees.</div>
+
+        <div class="field">
+          <label>Annual Subscription Cost
+            <span class="hint">$100/welder/mo → $1,200/welder/yr</span>
+          </label>
+          <div class="computed" id="c-cost-display">—</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <h2>Your Results</h2>
+        <div class="results-full">
+          <div class="label">Annual Savings</div>
+          <div class="value" id="c-savings">—</div>
+        </div>
+        <div class="results-grid">
+          <div class="result-box">
+            <div class="label">Breakeven</div>
+            <div class="value" id="c-breakeven">—</div>
+            <div class="sub">productivity improvement needed</div>
+          </div>
+          <div class="result-box highlight">
+            <div class="label">Annual Return (ROI)</div>
+            <div class="value" id="c-roi">—</div>
+            <div class="sub">times your investment</div>
+          </div>
+          <div class="result-box">
+            <div class="label">Annual Cost per Welder</div>
+            <div class="value" id="c-annual-cost">—</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- REVENUE-BASED PANEL -->
+    <div id="panel-revenue">
+      <div class="card">
+        <h2>Your Current Operation</h2>
+
+        <div class="field">
+          <label>Annual Revenue ($M)
+            <span class="hint">Total company welding/fabrication revenue in millions</span>
+          </label>
+          <input type="number" id="r-revenue" value="10" min="0" oninput="calcRevenue()" />
+        </div>
+
+        <div class="field">
+          <label>Number of Welders</label>
+          <input type="number" id="r-welders" value="50" min="1" oninput="calcRevenue()" />
+        </div>
+
+        <div class="field">
+          <label>Current Arc-Time Productivity (%)
+            <span class="hint">10%–15% per <a
+                href="https://www.millerwelds.com/resources/article-library/what-is-welding-arc-on-time-and-are-you-overestimating-it#:~:text=Overestimating%20welding%20arc%2Don%20time,is%20only%2010%2D12%25."
+                target="_blank" rel="noopener noreferrer">Miller</a> and <a
+                href="https://www.thefabricator.com/thewelder/article/arcwelding/maximizing-arc-on-time#:~:text=%E2%80%9CFive%20years%20ago%2C%20the%20operator,them%20away%20from%20actually%20welding%3F"
+                target="_blank" rel="noopener noreferrer">The Fabricator</a></span>
+          </label>
+          <input type="range" id="r-current-arc" min="5" max="40" value="13" oninput="calcRevenue()" />
+          <span class="range-val" id="r-current-arc-val">13%</span>
+        </div>
+
+        <div class="field">
+          <label>Productivity Improvement (%)
+            <span class="hint">Expected gain from arc-time visibility</span>
+          </label>
+          <input type="range" id="r-improvement" min="0" max="20" value="10" oninput="calcRevenue()" />
+          <span class="range-val" id="r-improvement-val">10%</span>
+        </div>
+
+        <div class="field">
+          <label>New Arc-Time Productivity (%)
+            <span class="hint">Calculated from improvement above</span>
+          </label>
+          <div class="computed" id="r-new-arc">—</div>
+        </div>
+
+        <hr class="divider" />
+
+        <div class="promo-box">No capital expense. No installation fees.</div>
+
+        <div class="field">
+          <label>Annual Subscription Cost
+            <span class="hint">$100/welder/mo → $1,200/welder/yr</span>
+          </label>
+          <div class="computed" id="r-cost-display">—</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <h2>Your Results</h2>
+        <div class="results-full">
+          <div class="label">Annual Savings</div>
+          <div class="value" id="r-add-revenue">—</div>
+        </div>
+        <div class="results-grid">
+          <div class="result-box">
+            <div class="label">Breakeven</div>
+            <div class="value" id="r-breakeven">—</div>
+            <div class="sub">productivity improvement needed</div>
+          </div>
+          <div class="result-box highlight">
+            <div class="label">Annual Return (ROI)</div>
+            <div class="value" id="r-roi">—</div>
+            <div class="sub">times your investment</div>
+          </div>
+          <div class="result-box">
+            <div class="label">Revenue per Welder</div>
+            <div class="value" id="r-rev-per-welder">—</div>
+            <div class="sub">$150k-$500k typical</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <footer>Pirimid &mdash; Real-time arc monitoring for fabrication shops<br />
+      Contact: <a href="mailto:info@pirimid.ai">info@pirimid.ai</a></footer>
+
+  </div>
+
+  <script>
+    function setMode(mode) {
+      document.getElementById('panel-cost').classList.toggle('hidden', mode !== 'cost');
+      document.getElementById('panel-revenue').classList.toggle('hidden', mode !== 'revenue');
+      document.getElementById('btn-cost').classList.toggle('active', mode === 'cost');
+      document.getElementById('btn-revenue').classList.toggle('active', mode === 'revenue');
+    }
+
+    function fmt(n) {
+      if (!isFinite(n)) return '—';
+      return '$' + Math.round(n).toLocaleString();
+    }
+
+    function fmtX(n) {
+      if (!isFinite(n) || n <= 0) return '—';
+      return n.toFixed(1) + 'x';
+    }
+
+    function fmtBreakevenPercent(n) {
+      if (!isFinite(n) || n <= 0) return '—';
+      return n.toFixed(1) + '%';
+    }
+
+    function calcCost() {
+      const rate = parseFloat(document.getElementById('c-hourly-rate').value) || 0;
+      const welders = parseFloat(document.getElementById('c-welders').value) || 0;
+      const shifts = parseFloat(document.getElementById('c-shifts').value) || 0;
+      const days = parseFloat(document.getElementById('c-days').value) || 0;
+      const currentArc = parseFloat(document.getElementById('c-current-arc').value) || 0;
+      const improve = parseFloat(document.getElementById('c-improvement').value) / 100 || 0;
+
+      document.getElementById('c-current-arc-val').textContent = document.getElementById('c-current-arc').value + '%';
+      document.getElementById('c-improvement-val').textContent = document.getElementById('c-improvement').value + '%';
+
+      const newArc = currentArc * (1 + improve);
+      const subMonthly = welders * 100;
+      const subAnnual = subMonthly * 12;
+
+      const hoursPerShift = 8;
+      const annualHoursPerWelder = hoursPerShift * days;
+      const breakevenImprove = annualHoursPerWelder > 0 && rate > 0 ? (subMonthly * 12) / (rate * annualHoursPerWelder) * 100 : Infinity;
+      const laborAnnualCost = rate * welders * shifts * hoursPerShift * days;
+      const costPerWelder = welders > 0 ? laborAnnualCost / welders : 0;
+      const savings = laborAnnualCost * improve;
+      const roi = subAnnual > 0 ? savings / subAnnual : Infinity;
+
+      document.getElementById('c-new-arc').textContent = newArc.toFixed(1) + '%';
+      document.getElementById('c-cost-display').textContent = '$' + subMonthly.toLocaleString() + '/mo \u2192 $' + subAnnual.toLocaleString() + '/yr';
+      document.getElementById('c-annual-cost').textContent = fmt(costPerWelder);
+      document.getElementById('c-savings').textContent = fmt(savings);
+      document.getElementById('c-breakeven').textContent = fmtBreakevenPercent(breakevenImprove);
+      document.getElementById('c-roi').textContent = fmtX(roi);
+    }
+
+    function calcRevenue() {
+      const revenueM = parseFloat(document.getElementById('r-revenue').value) || 0;
+      const revenue = revenueM * 1000000;
+      const welders = parseFloat(document.getElementById('r-welders').value) || 0;
+      const currentArc = parseFloat(document.getElementById('r-current-arc').value) || 0;
+      const improve = parseFloat(document.getElementById('r-improvement').value) / 100 || 0;
+
+      document.getElementById('r-current-arc-val').textContent = document.getElementById('r-current-arc').value + '%';
+      document.getElementById('r-improvement-val').textContent = document.getElementById('r-improvement').value + '%';
+
+      const newArc = currentArc * (1 + improve);
+      const subMonthly = welders * 100;
+      const subAnnual = subMonthly * 12;
+      const breakevenImprove = revenue > 0 ? (subMonthly * 12) / revenue * 100 : Infinity;
+      const revPerWelder = welders > 0 ? revenue / welders : 0;
+      const gainPts = newArc - currentArc;
+      const gainPct = currentArc > 0 ? gainPts / currentArc : 0;
+      const addRevenue = revenue * gainPct;
+      const roi = subAnnual > 0 ? addRevenue / subAnnual : Infinity;
+
+      document.getElementById('r-new-arc').textContent = newArc.toFixed(1) + '%';
+      document.getElementById('r-cost-display').textContent = '$' + subMonthly.toLocaleString() + '/mo \u2192 $' + subAnnual.toLocaleString() + '/yr';
+      document.getElementById('r-add-revenue').textContent = fmt(addRevenue);
+      document.getElementById('r-rev-per-welder').textContent = fmt(revPerWelder);
+      document.getElementById('r-breakeven').textContent = fmtBreakevenPercent(breakevenImprove);
+      document.getElementById('r-roi').textContent = fmtX(roi);
+    }
+
+    calcCost();
+    calcRevenue();
+  </script>
+</body>
+
+</html>
