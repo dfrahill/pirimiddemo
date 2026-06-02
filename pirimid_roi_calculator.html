@@ -379,7 +379,8 @@
 
         <div class="field">
           <label>Annual Subscription Cost
-            <span class="hint">$100/welder/mo → $1,200/welder/yr</span>
+            <span class="hint">Estimated - pricing may vary</span>
+            <span class="hint">Get a custom quote: <a href="mailto:info@pirimid.ai">info@pirimid.ai</a></span>
           </label>
           <div class="computed" id="c-cost-display">—</div>
         </div>
@@ -460,7 +461,8 @@
 
         <div class="field">
           <label>Annual Subscription Cost
-            <span class="hint">$100/welder/mo → $1,200/welder/yr</span>
+            <span class="hint">Estimated - pricing may vary</span>
+            <span class="hint">Get a custom quote: <a href="mailto:info@pirimid.ai">info@pirimid.ai</a></span>
           </label>
           <div class="computed" id="r-cost-display">—</div>
         </div>
@@ -532,12 +534,12 @@
       document.getElementById('c-improvement-val').textContent = document.getElementById('c-improvement').value + '%';
 
       const newArc = currentArc * (1 + improve);
-      const subMonthly = welders * 100;
+      const subMonthly = welders * 125;
       const subAnnual = subMonthly * 12;
 
       const hoursPerShift = 8;
       const annualHoursPerWelder = hoursPerShift * days;
-      const breakevenImprove = annualHoursPerWelder > 0 && rate > 0 ? (subMonthly * 12) / (rate * annualHoursPerWelder) * 100 : Infinity;
+      const breakevenImprove = annualHoursPerWelder > 0 && rate > 0 ? (125 * 12) / (rate * annualHoursPerWelder) * 100 : Infinity;
       const laborAnnualCost = rate * welders * shifts * hoursPerShift * days;
       const costPerWelder = welders > 0 ? laborAnnualCost / welders : 0;
       const savings = laborAnnualCost * improve;
@@ -562,9 +564,9 @@
       document.getElementById('r-improvement-val').textContent = document.getElementById('r-improvement').value + '%';
 
       const newArc = currentArc * (1 + improve);
-      const subMonthly = welders * 100;
+      const subMonthly = welders * 125;
       const subAnnual = subMonthly * 12;
-      const breakevenImprove = revenue > 0 ? (subMonthly * 12) / revenue * 100 : Infinity;
+      const breakevenImprove = revenue > 0 ? (125 * 12) / revenue * 100 : Infinity;
       const revPerWelder = welders > 0 ? revenue / welders : 0;
       const gainPts = newArc - currentArc;
       const gainPct = currentArc > 0 ? gainPts / currentArc : 0;
