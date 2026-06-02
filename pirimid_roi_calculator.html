@@ -333,7 +333,7 @@
 
         <div class="field">
           <label>Number of Welders</label>
-          <input type="number" id="c-welders" value="1" min="1" oninput="calcCost()" />
+          <input type="number" id="c-welders" value="10" min="1" oninput="calcCost()" />
         </div>
 
         <div class="field">
@@ -378,7 +378,7 @@
         <div class="promo-box">No capital expense. No installation fees.</div>
 
         <div class="field">
-          <label>Annual Subscription Cost
+          <label>Monthly Subscription Cost
             <span class="hint">Estimated - pricing may vary</span>
             <span class="hint">Get a custom quote: <a href="mailto:info@pirimid.ai">info@pirimid.ai</a></span>
           </label>
@@ -387,7 +387,7 @@
       </div>
 
       <div class="card">
-        <h2>Your Results</h2>
+        <h2>Your Annual Results</h2>
         <div class="results-full">
           <div class="label">Annual Savings</div>
           <div class="value" id="c-savings">—</div>
@@ -404,7 +404,7 @@
             <div class="sub">times your investment</div>
           </div>
           <div class="result-box">
-            <div class="label">Annual Cost per Welder</div>
+            <div class="label">Labor Cost per Welder</div>
             <div class="value" id="c-annual-cost">—</div>
           </div>
         </div>
@@ -460,7 +460,7 @@
         <div class="promo-box">No capital expense. No installation fees.</div>
 
         <div class="field">
-          <label>Annual Subscription Cost
+          <label>Monthly Subscription Cost
             <span class="hint">Estimated - pricing may vary</span>
             <span class="hint">Get a custom quote: <a href="mailto:info@pirimid.ai">info@pirimid.ai</a></span>
           </label>
@@ -469,7 +469,7 @@
       </div>
 
       <div class="card">
-        <h2>Your Results</h2>
+        <h2>Your Annual Results</h2>
         <div class="results-full">
           <div class="label">Annual Savings</div>
           <div class="value" id="r-add-revenue">—</div>
@@ -546,7 +546,7 @@
       const roi = subAnnual > 0 ? savings / subAnnual : Infinity;
 
       document.getElementById('c-new-arc').textContent = newArc.toFixed(1) + '%';
-      document.getElementById('c-cost-display').textContent = '$' + subMonthly.toLocaleString() + '/mo \u2192 $' + subAnnual.toLocaleString() + '/yr';
+      document.getElementById('c-cost-display').textContent = '$' + subMonthly.toLocaleString() + '/mo';
       document.getElementById('c-annual-cost').textContent = fmt(costPerWelder);
       document.getElementById('c-savings').textContent = fmt(savings);
       document.getElementById('c-breakeven').textContent = fmtBreakevenPercent(breakevenImprove);
@@ -566,7 +566,7 @@
       const newArc = currentArc * (1 + improve);
       const subMonthly = welders * 125;
       const subAnnual = subMonthly * 12;
-      const breakevenImprove = revenue > 0 ? (125 * 12) / revenue * 100 : Infinity;
+      const breakevenImprove = revenue > 0 ? (125 * 12 * welders) / revenue * 100 : Infinity;
       const revPerWelder = welders > 0 ? revenue / welders : 0;
       const gainPts = newArc - currentArc;
       const gainPct = currentArc > 0 ? gainPts / currentArc : 0;
@@ -574,7 +574,7 @@
       const roi = subAnnual > 0 ? addRevenue / subAnnual : Infinity;
 
       document.getElementById('r-new-arc').textContent = newArc.toFixed(1) + '%';
-      document.getElementById('r-cost-display').textContent = '$' + subMonthly.toLocaleString() + '/mo \u2192 $' + subAnnual.toLocaleString() + '/yr';
+      document.getElementById('r-cost-display').textContent = '$' + subMonthly.toLocaleString() + '/mo';
       document.getElementById('r-add-revenue').textContent = fmt(addRevenue);
       document.getElementById('r-rev-per-welder').textContent = fmt(revPerWelder);
       document.getElementById('r-breakeven').textContent = fmtBreakevenPercent(breakevenImprove);
