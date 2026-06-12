@@ -412,7 +412,8 @@
             <div class="container mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="text-center">
                     <h2 class="section-title">Experience the Pirimid Advantage</h2>
-                    <p class="section-subtitle">This is more than a report; it's a real-time command center. The illustrative
+                    <p class="section-subtitle">This is more than a report; it's a real-time command center. The
+                        illustrative
                         interactive dashboard below simulates how a project manager uses Pirimid to analyze a welding
                         operation.
                         Adjust the operational levers to see how you can proactively steer your project back on track
@@ -465,7 +466,8 @@
                         <!-- Key Metric -->
                         <div class="bg-slate-800 text-white p-6 rounded-lg flex flex-col items-center justify-center">
                             <div class="text-slate-300 text-lg font-medium">Projected End Date Variance</div>
-                            <div id="endDateVariance" class="text-5xl font-extrabold mt-2 text-amber-400">-15 Working Days</div>
+                            <div id="endDateVariance" class="text-5xl font-extrabold mt-2 text-amber-400">-15 Working
+                                Days</div>
                             <div class="text-slate-400 mt-2">from Plan</div>
                             <button id="getMitigationBtn" type="button"
                                 class="mt-6 bg-sky-500 text-white px-6 py-2 rounded-lg font-semibold hover:bg-sky-600 transition-colors flex items-center justify-center">
@@ -677,7 +679,7 @@
                         return Math.ceil(200 / (denominator / 5) - 5);
                     }
 
-                    const variance = (target - finalValue) / denominator / 5;
+                    const variance = (target - finalValue) / (denominator / 5);
                     return Math.ceil(variance);
                 }
 
