@@ -4,8 +4,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Pirimid connects the workface to the design with Industrial AI for construction. Compress project schedules, improve predictability, and optimize welding productivity.">
+    <link rel="canonical" href="https://pirimid.ai/">
     <title>Pirimid | Revolutionizing Construction Productivity</title>
     <link rel="icon" type="image/png" href="PirimidLogo.png">
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "Pirimid",
+      "url": "https://pirimid.ai",
+      "logo": "https://pirimid.ai/PirimidLogo.png",
+      "description": "Industrial AI platform for construction productivity optimization, connecting the workface to design plans.",
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "email": "info@pirimid.ai",
+        "contactType": "customer support"
+      }
+    }
+    </script>
     <!-- Chosen Palette: Corporate Blue & Neutrals -->
     <!-- Application Structure Plan: A narrative, single-page scrolling application that guides the user from the high-level business case to a tangible, interactive product demonstration. The structure is thematic: Hero, The Big Picture (Problem/Market/Opportunity), The Solution (Product), Interactive Demo, and Competition. This flow is designed to first convince the user of the "why" (the business case) and then let them experience the "how" (the product's value) through direct interaction. The interactive demo with sliders directly showcases the "Scenario Analysis" feature, making the core value proposition tangible and more impactful than a static image. -->
     <!-- Visualization & Content Choices: The core of the application is the interactive demo. Report Info: Forecasting example. Goal: Compare, Change, Relate. Viz/Method: A Chart.js line chart to show multiple forecasts, HTML/Tailwind metric cards for key stats, and HTML range sliders for user input. Interaction: User manipulates sliders for operational variables (e.g., Equipment Hours). JS listeners recalculate a "Mitigated Forecast" and update both the chart and metric cards in real-time. Justification: This transforms the static PDF example into a dynamic "what-if" tool, directly demonstrating Pirimid's value in a memorable way. Other report data (market size, problem stats) are presented as clear, static "stat-cards" for quick comprehension. -->
@@ -22,6 +41,58 @@
             /* slate-50 */
             color: #1e293b;
             /* slate-800 */
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate-fade-in-up {
+            opacity: 0;
+            animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        .animation-delay-100 {
+            animation-delay: 100ms;
+        }
+
+        .animation-delay-200 {
+            animation-delay: 200ms;
+        }
+
+        .animation-delay-300 {
+            animation-delay: 300ms;
+        }
+
+        .animation-delay-400 {
+            animation-delay: 400ms;
+        }
+
+        .reveal-card {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .reveal-card.revealed {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .delay-100 {
+            transition-delay: 100ms;
+        }
+
+        .delay-200 {
+            transition-delay: 200ms;
         }
 
         .section-title {
@@ -86,13 +157,19 @@
             }
         }
 
+        input[type="range"] {
+            -webkit-appearance: none;
+            appearance: none;
+            background: linear-gradient(to right, #0ea5e9 0%, #0ea5e9 var(--fill, 0%), #e2e8f0 var(--fill, 0%), #e2e8f0 100%);
+            border-radius: 9999px;
+        }
+
         input[type="range"]::-webkit-slider-thumb {
             -webkit-appearance: none;
             appearance: none;
             width: 20px;
             height: 20px;
             background: #0ea5e9;
-            /* sky-500 */
             border-radius: 50%;
             cursor: pointer;
             border: 2px solid white;
@@ -103,11 +180,15 @@
             width: 20px;
             height: 20px;
             background: #0ea5e9;
-            /* sky-500 */
             border-radius: 50%;
             cursor: pointer;
             border: 2px solid white;
             box-shadow: 0 0 5px rgba(14, 165, 233, 0.5);
+        }
+
+        input[type="range"]::-moz-range-track {
+            background: transparent;
+            border-radius: 9999px;
         }
 
         .loading-spinner {
@@ -144,10 +225,38 @@
                     <a href="#overview" class="text-slate-600 hover:text-sky-500 transition-colors">Overview</a>
                     <a href="#solution" class="text-slate-600 hover:text-sky-500 transition-colors">Solution</a>
                     <a href="#demo" class="text-slate-600 hover:text-sky-500 transition-colors">Interactive Demo</a>
-                    <a href="pirimid_roi_calculator.html" class="text-slate-600 hover:text-sky-500 transition-colors">ROI Calculator</a>
+                    <a href="pirimid_roi_calculator.html"
+                        class="text-slate-600 hover:text-sky-500 transition-colors font-semibold">ROI Calculator</a>
                 </div>
+                <div class="flex items-center space-x-4">
+                    <a href="#contact"
+                        class="hidden sm:inline-block bg-sky-500 text-white px-4 py-2 rounded-lg font-semibold hover:bg-sky-600 transition-colors">Contact
+                        Us</a>
+                    <!-- Mobile Hamburger Button -->
+                    <button id="mobileMenuBtn" type="button"
+                        class="md:hidden p-2 rounded-lg hover:bg-slate-100 focus:outline-none" aria-label="Toggle Menu">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-slate-600" fill="none"
+                            viewBox="0 0 24 24" stroke="currentColor">
+                            <path id="menuIcon" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M4 6h16M4 12h16M4 18h16" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+            <!-- Mobile Menu Dropdown -->
+            <div id="mobileMenu" class="hidden md:hidden pb-4 pt-2 border-t border-slate-100 flex flex-col space-y-3">
+                <a href="#overview"
+                    class="mobile-link text-slate-600 hover:text-sky-500 transition-colors px-2 py-1">Overview</a>
+                <a href="#solution"
+                    class="mobile-link text-slate-600 hover:text-sky-500 transition-colors px-2 py-1">Solution</a>
+                <a href="#demo"
+                    class="mobile-link text-slate-600 hover:text-sky-500 transition-colors px-2 py-1">Interactive
+                    Demo</a>
+                <a href="pirimid_roi_calculator.html"
+                    class="mobile-link text-slate-600 hover:text-sky-500 transition-colors px-2 py-1 font-semibold">ROI
+                    Calculator</a>
                 <a href="#contact"
-                    class="bg-sky-500 text-white px-4 py-2 rounded-lg font-semibold hover:bg-sky-600 transition-colors">Contact
+                    class="mobile-link bg-sky-500 text-white text-center px-4 py-2 rounded-lg font-semibold hover:bg-sky-600 transition-colors">Contact
                     Us</a>
             </div>
         </nav>
@@ -155,31 +264,40 @@
 
     <!-- Hero Section -->
     <main>
-        <section class="py-20 md:py-20 text-center bg-white">
+        <section
+            class="py-20 md:py-28 text-center bg-gradient-to-b from-sky-50/50 via-white to-slate-50 overflow-hidden">
             <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-                <h1 class="text-4xl md:text-5xl font-extrabold leading-tight text-blue-900">
-                    Industrial AI for Construction
+                <h1
+                    class="text-4xl md:text-6xl font-extrabold leading-tight text-slate-900 tracking-tight animate-fade-in-up">
+                    Industrial AI for <span
+                        class="bg-gradient-to-r from-sky-600 to-blue-600 bg-clip-text text-transparent">Construction</span>
                 </h1>
-                <div class="mt-8">
-                    <div class="relative">
-                        <!-- Added Hero Image with text -->
+                <div class="mt-8 animate-fade-in-up animation-delay-100">
+                    <div class="relative inline-block">
                         <img src="construction_hero2.jpg" alt="Construction Intelligence Data Analytics"
-                            class="mx-auto rounded-xl shadow-2xl border border-slate-100 w-full max-w-full md:max-w-lg lg:max-w-2xl h-auto" />
+                            class="mx-auto rounded-2xl shadow-2xl border border-slate-100 w-full max-w-full md:max-w-lg lg:max-w-3xl h-auto transition-transform duration-500 hover:scale-[1.02]">
                     </div>
                 </div>
-                <p class="mt-6 max-w-2xl mx-auto text-lg text-slate-600">
-                    Pirimid connects the workface to the design replacing slow and error prone manual efforts with
+                <p
+                    class="mt-8 max-w-2xl mx-auto text-lg md:text-xl text-slate-600 leading-relaxed animate-fade-in-up animation-delay-200">
+                    Pirimid connects the workface to the design, replacing slow and error-prone manual efforts with
                     clear, actionable insights to compress schedule and improve predictability backed by operations
                     science.
                 </p>
-                <div class="mt-8">
+                <div class="mt-8 animate-fade-in-up animation-delay-300">
                     <p class="mt-6 max-w-2xl mx-auto text-lg text-slate-600">
-                        Take the first step - <span class="text-blue-900"><em><strong>Save one day of schedule on one
-                                    activity</strong></em></span>
+                        Take the first step - <span class="text-sky-600 font-semibold"><em>Save one day of schedule on
+                                one
+                                activity</em></span>
                     </p>
-                    <a href="#demo"
-                        class="mt-2 bg-sky-500 text-white px-8 py-3 rounded-lg font-bold text-lg hover:bg-sky-600 transition-transform hover:scale-105 inline-block">Explore
-                        the Demo</a>
+                    <div class="mt-4 flex flex-col sm:flex-row justify-center gap-4">
+                        <a href="#demo"
+                            class="bg-sky-500 text-white px-8 py-4 rounded-xl font-bold text-lg hover:bg-sky-600 shadow-lg shadow-sky-500/20 transition-all hover:-translate-y-0.5 inline-block">Explore
+                            the Demo</a>
+                        <a href="pirimid_roi_calculator.html"
+                            class="bg-white text-slate-700 border border-slate-200 px-8 py-4 rounded-xl font-bold text-lg hover:bg-slate-50 transition-all hover:-translate-y-0.5 inline-block">Calculate
+                            ROI</a>
+                    </div>
                 </div>
             </div>
         </section>
@@ -191,21 +309,33 @@
                 <p class="section-subtitle">Construction has struggled with productivity for decades. The market is
                     massive, and the cost of inefficiency is staggering.</p>
                 <div class="mt-12 grid gap-8 md:grid-cols-3">
-                    <div class="stat-card text-center">
+                    <div class="stat-card reveal-card text-center">
+                        <div
+                            class="w-12 h-12 rounded-full bg-red-50 flex items-center justify-center mx-auto mb-4 text-red-500 text-2xl font-bold">
+                            ⚠️
+                        </div>
                         <div class="stat-value text-red-500">62%</div>
                         <div class="stat-label mt-2">Average Mega-Project Overrun</div>
                         <p class="text-sm text-slate-500 mt-2">Legacy methods fail to explain why projects fall behind,
                             creating massive risk in planning and execution.</p>
                     </div>
-                    <div class="stat-card text-center">
-                        <div class="stat-value">$1.2T</div>
+                    <div class="stat-card reveal-card text-center delay-100">
+                        <div
+                            class="w-12 h-12 rounded-full bg-sky-50 flex items-center justify-center mx-auto mb-4 text-sky-500 text-2xl font-bold">
+                            🌐
+                        </div>
+                        <div class="stat-value text-sky-500">$1.2T</div>
                         <div class="stat-label mt-2">Non-Residential US Market</div>
                         <p class="text-sm text-slate-500 mt-2">Part of a $10T+ global industry, representing a vast
                             landscape for efficiency gains.</p>
                     </div>
-                    <div class="stat-card text-center">
-                        <div class="stat-value">10%+</div>
-                        <div class="stat-label mt-2">Cost & Schedule Reduction</div>
+                    <div class="stat-card reveal-card text-center delay-200">
+                        <div
+                            class="w-12 h-12 rounded-full bg-green-50 flex items-center justify-center mx-auto mb-4 text-green-500 text-2xl font-bold">
+                            📈
+                        </div>
+                        <div class="stat-value text-green-600">10%+</div>
+                        <div class="stat-label mt-2">Cost &amp; Schedule Reduction</div>
                         <p class="text-sm text-slate-500 mt-2">Applying manufacturing operations science principles with
                             Pirimid can unlock huge savings.</p>
                     </div>
@@ -227,14 +357,15 @@
                         <p><strong>Real-Time Visibility</strong></p>
                         <p>Pirimid creates a live, data-rich model of your construction site's operations to see what is
                             or is not happening in real-time, not weeks later. Leverage connected project and sensor
-                            data to track and forecast key processes.
+                            data to track and forecast key processes.</p>
                         <p class="mt-2"><strong>AI-Powered Insights</strong></p>
                         <p>Our platform doesn't just show you data; it interprets it. AI/ML-enabled alerts automatically
                             notify you when an operation is blocked, weather impacted, or trending off-track and suggest
                             potential mitigations before a small issue becomes a major delay.</p>
                         <p class="mt-2"><strong>Why Now?</strong></p>
-                        <p>The convergence of increasingly connected equipment and powerful AI capabilities have created
-                            the perfect moment to enable same technological shift transformed manufacturing 15 years
+                        <p>The convergence of increasingly connected equipment and powerful AI capabilities has created
+                            the perfect moment to enable the same technological shift that transformed manufacturing 15
+                            years
                             ago, creating billion-dollar companies. Construction is next.</p>
                     </div>
                     <div class="bg-slate-100 p-8 rounded-lg border border-slate-200">
@@ -243,7 +374,7 @@
                             <li class="flex items-start">
                                 <span class="text-sky-500 mr-3 mt-1">&#10004;</span>
                                 <div><strong class="text-slate-700">Live Progress Tracking:</strong> Compare performance
-                                    against plan continuously. AI identifies potential delays and send alerts before
+                                    against plan continuously. AI identifies potential delays and sends alerts before
                                     they happen.</div>
                             </li>
                             <li class="flex items-start">
@@ -303,7 +434,7 @@
                                         (hrs/day)</label>
                                     <div class="flex items-center space-x-4">
                                         <input type="range" id="equipmentHours" min="7" max="11" step="0.25" value="9"
-                                            class="w-full h-2 bg-slate-200 rounded-lg appearance-none cursor-pointer">
+                                            class="w-full h-2 rounded-lg appearance-none cursor-pointer slider-fill">
                                         <span id="equipmentHoursValue"
                                             class="font-bold text-sky-600 w-16 text-center text-lg">9.00</span>
                                     </div>
@@ -313,7 +444,7 @@
                                         (min/day)</label>
                                     <div class="flex items-center space-x-4">
                                         <input type="range" id="removalRates" min="0" max="60" step="1" value="30"
-                                            class="w-full h-2 bg-slate-200 rounded-lg appearance-none cursor-pointer">
+                                            class="w-full h-2 rounded-lg appearance-none cursor-pointer slider-fill">
                                         <span id="removalRatesValue"
                                             class="font-bold text-sky-600 w-16 text-center text-lg">30</span>
                                     </div>
@@ -323,7 +454,7 @@
                                         (min/weld)</label>
                                     <div class="flex items-center space-x-4">
                                         <input type="range" id="panelInstallTime" min="35" max="65" step="1" value="50"
-                                            class="w-full h-2 bg-slate-200 rounded-lg appearance-none cursor-pointer">
+                                            class="w-full h-2 rounded-lg appearance-none cursor-pointer slider-fill">
                                         <span id="panelInstallTimeValue"
                                             class="font-bold text-sky-600 w-16 text-center text-lg">50</span>
                                     </div>
@@ -335,7 +466,7 @@
                             <div class="text-slate-300 text-lg font-medium">Projected End Date Variance</div>
                             <div id="endDateVariance" class="text-5xl font-extrabold mt-2 text-amber-400">-15 Days</div>
                             <div class="text-slate-400 mt-2">from Plan</div>
-                            <button id="getMitigationBtn"
+                            <button id="getMitigationBtn" type="button"
                                 class="mt-6 bg-sky-500 text-white px-6 py-2 rounded-lg font-semibold hover:bg-sky-600 transition-colors flex items-center justify-center">
                                 Get AI Mitigation Suggestions ✨
                             </button>
@@ -345,7 +476,7 @@
                         <h4 class="text-lg font-bold text-sky-800 mb-4">AI Mitigation Suggestions</h4>
                         <div id="suggestionContent" class="text-slate-700"></div>
                         <div id="suggestionLoading" class="hidden flex items-center justify-center py-4">
-
+                            <div class="loading-spinner"></div>
                         </div>
                     </div>
                 </div>
@@ -356,14 +487,17 @@
         <section class="py-16 md:py-24 bg-slate-800">
             <div class="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
                 <h2 class="section-title text-white">See Your Return on Investment</h2>
-                <p class="section-subtitle text-slate-300">Ready to quantify the financial impact of arc-time monitoring for your welding operations? 
+                <p class="section-subtitle text-slate-300">Ready to quantify the financial impact of arc-time monitoring
+                    for your welding operations?
                     Our ROI calculator shows you exactly how much you can save with Pirimid's real-time visibility.</p>
                 <div class="mt-8">
-                    <a href="pirimid_roi_calculator.html" 
+                    <a href="pirimid_roi_calculator.html"
                         class="bg-sky-500 text-white px-8 py-4 rounded-lg font-bold text-lg hover:bg-sky-400 transition-colors inline-flex items-center gap-2">
                         Calculate Your ROI
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24"
+                            stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M13 7l5 5m0 0l-5 5m5-5H6" />
                         </svg>
                     </a>
                 </div>
@@ -377,19 +511,47 @@
                 <p class="section-subtitle">Other solutions provide an incomplete picture. Pirimid is built to deliver
                     not just data, but frequent, actionable intelligence that directly links to project outcomes through
                     operations science.</p>
-                <div class="mt-12 max-w-4xl mx-auto prose lg:prose-lg text-slate-600 text-left">
-                    <p>The primary competition comes from computer vision companies. These platforms are excellent at
-                        measuring what has been built. However, they often leave gaps in two critical areas:</p>
-                    <ul style="list-style-type: square;">
-                        <li class="mt-1" style="margin-left: 20px;margin-right: 20px;"><strong>Frequency:</strong> Data
-                            capture can be periodic, missing the day-to-day operational blockers and conflicts that lead
-                            to deviations. Pirimid's digital twin is designed for higher frequency data streams.</li>
-                        <li class="mt-1" style="margin-left: 20px;margin-right: 20px;"><strong>Actionable
-                                Insights:</strong> A photo or a 3D model shows progress, but it doesn't always provide
-                            sufficient context to explain a delay or model the impact of a potential solution. Pirimid
-                            links operational data with project documentation to decompose effects and highlight
-                            blockers enabling true cause-and-effect analysis for proactive planning.</li>
-                    </ul>
+                <div
+                    class="mt-12 max-w-4xl mx-auto overflow-hidden rounded-xl border border-slate-200 shadow-lg bg-white">
+                    <div
+                        class="grid grid-cols-3 bg-slate-900 text-white font-bold text-sm md:text-base py-4 px-6 text-left">
+                        <div class="col-span-1">Comparison Metric</div>
+                        <div class="col-span-1 text-slate-400">Computer Vision</div>
+                        <div class="col-span-1 text-sky-400">Pirimid Platform</div>
+                    </div>
+                    <div class="divide-y divide-slate-100">
+                        <div class="grid grid-cols-3 py-4 px-6 text-left items-center text-sm md:text-base gap-2">
+                            <div class="col-span-1 font-semibold text-slate-900">Primary Focus</div>
+                            <div class="col-span-1 text-slate-600 pr-2">Measuring what has already been built
+                                (post-facto tracking)</div>
+                            <div
+                                class="col-span-1 text-slate-800 font-medium bg-sky-50/40 p-2 rounded border border-sky-100/50">
+                                Optimizing active execution and workface productivity in real-time</div>
+                        </div>
+                        <div class="grid grid-cols-3 py-4 px-6 text-left items-center text-sm md:text-base gap-2">
+                            <div class="col-span-1 font-semibold text-slate-900">Data Frequency</div>
+                            <div class="col-span-1 text-slate-600 pr-2">Periodic scans (weekly/bi-weekly), missing
+                                day-to-day blockers</div>
+                            <div
+                                class="col-span-1 text-slate-800 font-medium bg-sky-50/40 p-2 rounded border border-sky-100/50">
+                                Continuous, high-frequency data streams &amp; live digital twin</div>
+                        </div>
+                        <div class="grid grid-cols-3 py-4 px-6 text-left items-center text-sm md:text-base gap-2">
+                            <div class="col-span-1 font-semibold text-slate-900">Actionability</div>
+                            <div class="col-span-1 text-slate-600 pr-2">Static progress reporting &amp; 3D models (no
+                                "why" explanation)</div>
+                            <div
+                                class="col-span-1 text-slate-800 font-medium bg-sky-50/40 p-2 rounded border border-sky-100/50">
+                                Proactive alerts, root-cause decomposition &amp; scenario simulation</div>
+                        </div>
+                        <div class="grid grid-cols-3 py-4 px-6 text-left items-center text-sm md:text-base gap-2">
+                            <div class="col-span-1 font-semibold text-slate-900">Core Engine</div>
+                            <div class="col-span-1 text-slate-600 pr-2">Image analysis &amp; visual comparison</div>
+                            <div
+                                class="col-span-1 text-slate-800 font-medium bg-sky-50/40 p-2 rounded border border-sky-100/50">
+                                Operations science models &amp; predictive digital twin simulation</div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
@@ -406,7 +568,7 @@
                         <p class="text-lg text-slate-700 mb-4">Reach out to <a href="mailto:info@pirimid.ai"
                                 class="text-sky-600 hover:underline font-semibold">info@pirimid.ai</a> for more
                             information.</p>
-                        <div><a href="https://outlook.office.com/bookwithme/user/eebf449ecb4a4f21aa110c9e32b4372d@pirimid.ai/meetingtype/E-ACKoS-n0i6RWnuAx4Dyw2?bookingcode=c9f47e12-5e83-434a-94f2-6e7e44829a53&anonymous&ismsaljsauthenabled&ep=mlink"
+                        <div><a href="https://outlook.office.com/bookwithme/user/eebf449ecb4a4f21aa110c9e32b4372d@pirimid.ai/meetingtype/E-ACKoS-n0i6RWnuAx4Dyw2?bookingcode=c9f47e12-5e83-434a-94f2-6e7e44829a53&amp;anonymous&amp;ismsaljsauthenabled&amp;ep=mlink"
                                 class="mt-4 bg-sky-500 text-white px-4 py-2 rounded-lg font-semibold hover:bg-sky-600 transition-colors">Book
                                 an Overview</a></div>
                     </div>
@@ -417,10 +579,25 @@
     </main>
 
     <!-- Footer -->
-    <footer class="bg-slate-800 text-slate-400">
-        <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-8 text-center">
-            <p>&copy; 2025 Pirimid. All rights reserved.</p>
-            <p class="text-sm mt-2">Modernizing construction, one data point at a time.</p>
+    <footer class="bg-slate-900 text-slate-400 border-t border-slate-800 py-12">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 items-center text-center md:text-left">
+                <div>
+                    <img src="PirimidLogoWebsite.png" alt="Pirimid Logo"
+                        class="h-8 w-auto mx-auto md:mx-0 brightness-0 invert opacity-80">
+                    <p class="text-sm mt-3 text-slate-500">Modernizing construction, one data point at a time.</p>
+                </div>
+                <div class="flex justify-center space-x-6">
+                    <a href="#" class="hover:text-white transition-colors">Overview</a>
+                    <a href="#solution" class="hover:text-white transition-colors">Solution</a>
+                    <a href="#demo" class="hover:text-white transition-colors">Demo</a>
+                    <a href="#contact" class="hover:text-white transition-colors">Contact</a>
+                    <a href="pirimid_roi_calculator.html" class="hover:text-white transition-colors">ROI Calculator</a>
+                </div>
+                <div class="text-center md:text-right text-sm text-slate-500">
+                    <p>&copy; <span id="currentYear">2026</span> Pirimid. All rights reserved.</p>
+                </div>
+            </div>
         </div>
     </footer>
 
@@ -449,8 +626,6 @@
             const suggestionLoading = document.getElementById('suggestionLoading');
 
             // Contact Form Elements
-            const contactForm = document.getElementById('contactForm');
-            const formMessage = document.getElementById('formMessage');
             const contactInfoDiv = document.getElementById('contactInfo');
 
 
@@ -608,6 +783,13 @@
                                     return label;
                                 }
                             }
+                        },
+                        title: {
+                            display: true,
+                            text: 'Dashed amber points show the Default Forecast snapshot at month boundaries',
+                            color: '#64748b',
+                            font: { size: 11, style: 'italic' },
+                            padding: { bottom: 12 }
                         }
                     },
                     scales: {
@@ -616,7 +798,10 @@
                                 display: false
                             },
                             ticks: {
-                                color: '#64748b' // slate-500
+                                color: '#64748b', // slate-500
+                                maxTicksLimit: 10,
+                                maxRotation: 0,
+                                autoSkip: true
                             }
                         },
                         y: {
@@ -651,20 +836,83 @@
             removalRatesSlider.addEventListener('input', updateUI);
             panelInstallTimeSlider.addEventListener('input', updateUI); // Event listener for new slider
 
+            // Update slider gradient fill
+            function updateSliderFill(slider) {
+                const min = parseFloat(slider.min);
+                const max = parseFloat(slider.max);
+                const val = parseFloat(slider.value);
+                const pct = ((val - min) / (max - min)) * 100;
+                slider.style.setProperty('--fill', pct + '%');
+            }
+            document.querySelectorAll('.slider-fill').forEach(slider => {
+                updateSliderFill(slider);
+                slider.addEventListener('input', () => updateSliderFill(slider));
+            });
+
 
             updateUI();
 
             getMitigationBtn.addEventListener('click', () => {
-
                 mitigationSuggestionsDiv.classList.remove('hidden');
                 suggestionContent.innerHTML = '';
                 suggestionLoading.classList.remove('hidden');
                 getMitigationBtn.disabled = true;
 
-                suggestionContent.innerHTML = '<p class="text-black-500"><strong>Primary Delay: </strong>Detailed analysis indicate primary driver of delays is lack of materials driving 30min wait time per day, including a 5hr delay on March 5th. Ensuring an inventory of at least 14 joints ready for welding at the start of each day will reduce average wait by 90%.</p><div class="text-black-500 mr-3 mt-1""></p><strong>Productivity: </strong>Welding productivity is underperforming plan by 8% while working time is exceeding plan by 2%.</div></p><div class="text-black-500 mr-3 mt-1""><strong>Urgency: </strong>Mitigating action required in next 2 weeks or project will not deliver schedule. </div> </p>';
-
-
+                setTimeout(() => {
+                    suggestionLoading.classList.add('hidden');
+                    suggestionContent.innerHTML = '<p class="text-slate-700 mb-2"><strong>Primary Delay: </strong>Detailed analysis indicates the primary driver of delays is a lack of materials driving 30 min wait time per day, including a 5 hr delay on March 5th. Ensuring an inventory of at least 14 joints ready for welding at the start of each day will reduce average wait by 90%.</p><div class="text-slate-700 mb-2"><strong>Productivity: </strong>Welding productivity is underperforming plan by 8% while working time is exceeding plan by 2%.</div><div class="text-slate-700"><strong>Urgency: </strong>Mitigating action required in next 2 weeks or project will not deliver schedule.</div>';
+                    getMitigationBtn.disabled = false;
+                }, 800);
             });
+
+            // Set dynamic copyright year
+            const yearEl = document.getElementById('currentYear');
+            if (yearEl) {
+                yearEl.textContent = new Date().getFullYear();
+            }
+
+            // Scroll-triggered animations for cards
+            const revealCards = document.querySelectorAll('.reveal-card');
+            if ('IntersectionObserver' in window && revealCards.length > 0) {
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            entry.target.classList.add('revealed');
+                            observer.unobserve(entry.target);
+                        }
+                    });
+                }, {
+                    threshold: 0.15
+                });
+
+                revealCards.forEach(card => observer.observe(card));
+            } else {
+                revealCards.forEach(card => card.classList.add('revealed'));
+            }
+
+            // Mobile Menu Toggle
+            const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+            const mobileMenu = document.getElementById('mobileMenu');
+            const menuIcon = document.getElementById('menuIcon');
+            const mobileLinks = document.querySelectorAll('.mobile-link');
+
+            if (mobileMenuBtn && mobileMenu && menuIcon) {
+                mobileMenuBtn.addEventListener('click', () => {
+                    const isHidden = mobileMenu.classList.toggle('hidden');
+                    if (isHidden) {
+                        menuIcon.setAttribute('d', 'M4 6h16M4 12h16M4 18h16');
+                    } else {
+                        menuIcon.setAttribute('d', 'M6 18L18 6M6 6l12 12');
+                    }
+                });
+
+                mobileLinks.forEach(link => {
+                    link.addEventListener('click', () => {
+                        mobileMenu.classList.add('hidden');
+                        menuIcon.setAttribute('d', 'M4 6h16M4 12h16M4 18h16');
+                    });
+                });
+            }
         });
     </script>
 </body>
