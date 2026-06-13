@@ -226,7 +226,8 @@
                     <a href="#solution" class="text-slate-600 hover:text-sky-500 transition-colors">Solution</a>
                     <a href="#demo" class="text-slate-600 hover:text-sky-500 transition-colors">Interactive Demo</a>
                     <a href="pirimid_roi_calculator.html"
-                        class="text-slate-600 hover:text-sky-500 transition-colors font-semibold">ROI Calculator</a>
+                        class="text-slate-600 hover:text-sky-500 transition-colors font-semibold">Welding ROI
+                        Calculator</a>
                 </div>
                 <div class="flex items-center space-x-4">
                     <a href="#contact"
@@ -411,13 +412,14 @@
         <section id="demo" class="py-16 md:py-24">
             <div class="container mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="text-center">
-                    <h2 class="section-title">Experience the Pirimid Advantage</h2>
-                    <p class="section-subtitle">This is more than a report; it's a real-time command center. The
-                        illustrative
-                        interactive dashboard below simulates how a project manager uses Pirimid to analyze a welding
-                        operation.
-                        Adjust the operational levers to see how you can proactively steer your project back on track
-                        days or weeks before traditional reporting.</p>
+                    <h2 class="section-title">Real-Time Insights</h2>
+                    <p class="section-subtitle"> A small delay caught early is a manageable fix. The same delay caught
+                        in next month's report is a crisis. Use this demo - built from real project data - to see how
+                        Pirimid
+                        surfaces
+                        schedule risk
+                        minute-by-minute. Then adjust the operational levers to see exactly what it takes to close the
+                        gap.</p>
                 </div>
 
                 <div class="mt-12 bg-white p-6 md:p-8 rounded-xl shadow-2xl border border-slate-200">
@@ -490,9 +492,9 @@
         <section class="py-16 md:py-24 bg-slate-800">
             <div class="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
                 <h2 class="section-title text-white">See Your Return on Investment</h2>
-                <p class="section-subtitle text-slate-300">Ready to quantify the financial impact of arc-time monitoring
-                    for your welding operations?
-                    Our ROI calculator shows you exactly how much you can save with Pirimid's real-time visibility.</p>
+                <p class="section-subtitle text-slate-300">Ready to quantify the financial impact?
+                    Our sample ROI calculator for welding shows you exactly how much you can save with Pirimid's
+                    real-time visibility.</p>
                 <div class="mt-8">
                     <a href="pirimid_roi_calculator.html"
                         class="bg-sky-500 text-white px-8 py-4 rounded-lg font-bold text-lg hover:bg-sky-400 transition-colors inline-flex items-center gap-2">
@@ -595,7 +597,8 @@
                     <a href="#solution" class="hover:text-white transition-colors">Solution</a>
                     <a href="#demo" class="hover:text-white transition-colors">Demo</a>
                     <a href="#contact" class="hover:text-white transition-colors">Contact</a>
-                    <a href="pirimid_roi_calculator.html" class="hover:text-white transition-colors">ROI Calculator</a>
+                    <a href="pirimid_roi_calculator.html" class="hover:text-white transition-colors">Welding ROI
+                        Calculator</a>
                 </div>
                 <div class="text-center md:text-right text-sm text-slate-500">
                     <p>&copy; <span id="currentYear">2026</span> Pirimid. All rights reserved.</p>
@@ -660,7 +663,7 @@
                     const scalar = hoursFactor * rateFactor;
 
                     return mitigatedForecast.map(function (v) {
-                        return v === null ? null : 200 + (v - 200) * scalar;
+                        return v === null ? null : Math.min(400, 200 + (v - 200) * scalar);
                     });
                 }
 
@@ -832,7 +835,7 @@
                                     }
                                 },
                                 beginAtZero: true,
-                                max: 500,
+                                max: 450,
                                 grid: {
                                     color: '#e2e8f0' // slate-200
                                 },
