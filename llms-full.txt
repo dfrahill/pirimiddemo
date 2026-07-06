@@ -1,0 +1,67 @@
+# Pirimid - Full Platform Details & Specifications
+
+This document contains a consolidated, text-only version of the Pirimid platform details, market opportunity, digital twin capabilities, and the welding ROI calculation models. It is designed to be easily ingested by AI search agents.
+
+---
+
+## 1. Landing Page Details
+
+### The Problem in Mega-Projects
+- **Legacy Inefficiency**: Mega-projects suffer from an average of **62% schedule overrun**.
+- **Information Latency**: Traditional methods fail to explain why projects fall behind. They rely on manual data entry and historical reporting, creating a delay between field activities and management visibility.
+
+### The Pirimid Solution
+Pirimid connects the workface directly to the design plan using **Industrial AI**. It uses **Operations Science** models and a **Predictive Digital Twin** simulation to:
+- Compress project schedules
+- Improve forecast predictability
+- Optimize welding and construction productivity
+- Run proactive alerts, root-cause decomposition, and scenario simulation
+
+### Interactive Digital Twin & Scenario Simulator
+The landing page includes an interactive digital twin simulation modeling a piping/welding schedule. Project managers can simulate changes to three primary operational variables:
+1. **Equipment Hours**: Adjusting available equipment working time.
+2. **Material Availability (Wait Times)**: Eliminating field wait times for welding joints (e.g., maintaining an inventory buffer of at least 40 joints to reduce wait times by 90%).
+3. **Activity Durations (Panel Install Time)**: Optimizing direct labor work steps.
+*Resulting Output*: Generates a "Mitigated Forecast" (represented by a Chart.js line plot) showing how many days can be saved, updated in real time.
+
+### Competitive Analysis
+
+| Feature | Legacy Image Analysis / Visual Comparison | Pirimid Industrial AI Platform |
+| :--- | :--- | :--- |
+| **Core Engine** | Image analysis & visual comparison | Operations science models & predictive digital twin |
+| **Project Insight** | Historical tracking (reactive) | Proactive alerts, root-cause decomposition, and scenario simulation |
+| **Schedule Control** | Manual rescheduling | Automated schedule compression algorithms |
+
+---
+
+## 2. Welding ROI Calculator Specifications
+
+The Pirimid ROI Calculator is an interactive tool allowing companies to model the return on investment for deploying real-time arc-time monitoring.
+
+### Model A: Labor Cost Savings
+Designed to compute savings from reducing active labor hours through productivity improvements:
+- **Inputs**:
+  - Welder Hourly Rate (USD)
+  - Number of Welders
+  - Weekly Hours worked per welder
+  - Estimated Productivity Improvement (%)
+- **Calculations & Formulas**:
+  - *Extra Welding Hours Added Annually* = `Welders * Weekly Hours * 52 * Improvement %`
+  - *Monthly Subscription Cost* = `$125 * Number of Welders`
+  - *Net Annual Savings* = `(Hourly Rate * Extra Welding Hours) - Annual Subscription Cost`
+  - *Breakeven Improvement %* = `(Annual Subscription Cost per Welder) / (Hourly Rate * Annual Hours per Welder) * 100`
+  - *ROI* = `Net Annual Savings / Annual Subscription Cost`
+
+### Model B: Revenue Expansion
+Designed to compute top-line revenue increases made possible by accelerating welding completion:
+- **Inputs**:
+  - Annual Project Revenue (USD Millions)
+  - Number of Welders
+  - Weekly Hours worked per welder
+  - Estimated Productivity Improvement (%)
+- **Calculations & Formulas**:
+  - *Extra Welding Hours Added Annually* = `Welders * Weekly Hours * 50 * Improvement %`
+  - *Monthly Subscription Cost* = `$125 * Number of Welders`
+  - *Net Additional Revenue* = `(Annual Project Revenue * Improvement %) - Annual Subscription Cost`
+  - *Breakeven Improvement %* = `(Annual Subscription Cost) / (Annual Project Revenue) * 100`
+  - *ROI* = `Net Additional Revenue / Annual Subscription Cost`

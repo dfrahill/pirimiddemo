@@ -1,0 +1,16 @@
+# Pirimid
+
+> Connecting the workface to the design with Industrial AI for construction.
+
+[Pirimid](https://pirimid.ai/) is an Industrial AI platform that optimizes construction productivity by connecting construction workface execution to design specifications. It uses operations science to compress project schedules, improve predictability, and optimize welding productivity.
+
+## Core Resources
+
+- [Home](https://pirimid.ai/) - Main website outlining the business case, market opportunity, and an interactive digital twin schedule-simulation demo.
+- [Welding ROI Calculator](https://pirimid.ai/pirimid_roi_calculator.html) - Interactive tool to estimate monthly and annual savings, breakeven thresholds, and overall ROI based on welder count, hourly rate, and productivity improvements.
+
+## Key Concepts
+
+- **Workface-to-Design Connection:** Aligning real-time field data with design models to eliminate project execution latency.
+- **Operations Science:** Scientific scheduling models and simulation algorithms powering a predictive digital twin.
+- **Arc-Time Monitoring:** Directly monitoring weld times to measure real productivity and trigger root-cause decomposition for project delays.
