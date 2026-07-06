@@ -8,6 +8,7 @@
 
 - [Home](https://pirimid.ai/) - Main website outlining the business case, market opportunity, and an interactive digital twin schedule-simulation demo.
 - [Welding ROI Calculator](https://pirimid.ai/pirimid_roi_calculator.html) - Interactive tool to estimate monthly and annual savings, breakeven thresholds, and overall ROI based on welder count, hourly rate, and productivity improvements.
+- [Privacy Policy](https://pirimid.ai/privacy.html) - Information on how Pirimid handles your data.
 
 ## Key Concepts
 

@@ -65,3 +65,9 @@ Designed to compute top-line revenue increases made possible by accelerating wel
   - *Net Additional Revenue* = `(Annual Project Revenue * Improvement %) - Annual Subscription Cost`
   - *Breakeven Improvement %* = `(Annual Subscription Cost) / (Annual Project Revenue) * 100`
   - *ROI* = `Net Additional Revenue / Annual Subscription Cost`
+
+---
+
+## 3. Privacy & Data Handling
+
+Pirimid respects user privacy. The ROI Calculator processes all inputs entirely client-side; no user-entered data is transmitted to our servers. For full details, see the [Privacy Policy](https://pirimid.ai/privacy.html).

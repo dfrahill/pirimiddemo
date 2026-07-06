@@ -5,11 +5,37 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description"
-        content="Pirimid connects the workface to the design with Industrial AI for construction. Compress project schedules, improve predictability, and optimize welding productivity.">
+        content="Pirimid uses Industrial AI to connect construction workface to design, compressing schedules and improving predictability. Book an overview today.">
+    <meta name="robots" content="index, follow, max-image-preview:large">
+    <meta name="author" content="Pirimid">
+    <meta name="theme-color" content="#0ea5e9">
     <link rel="canonical" href="https://pirimid.ai/">
-    <title>Pirimid | Revolutionizing Construction Productivity</title>
+    <title>Industrial AI for Construction Productivity | Pirimid</title>
+    <!-- Favicon -->
     <link rel="icon" type="image/png" href="PirimidLogo.png">
-    <!-- Structured Data -->
+    <link rel="icon" type="image/png" sizes="32x32" href="PirimidLogo-32.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="PirimidLogo-180.png">
+    <link rel="manifest" href="app.webmanifest">
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://pirimid.ai/">
+    <meta property="og:site_name" content="Pirimid">
+    <meta property="og:title" content="Industrial AI for Construction Productivity | Pirimid">
+    <meta property="og:description" content="Pirimid connects the workface to the design with Industrial AI for construction. Compress schedules, improve predictability, optimize welding productivity.">
+    <meta property="og:image" content="https://pirimid.ai/og-image.jpg">
+    <meta property="og:image:secure_url" content="https://pirimid.ai/og-image.jpg">
+    <meta property="og:image:type" content="image/jpeg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Pirimid Industrial AI platform for construction productivity">
+    <meta property="og:locale" content="en_US">
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Industrial AI for Construction Productivity | Pirimid">
+    <meta name="twitter:description" content="Pirimid connects the workface to the design with Industrial AI for construction. Compress schedules, improve predictability, optimize welding productivity.">
+    <meta name="twitter:image" content="https://pirimid.ai/og-image.jpg">
+    <meta name="twitter:image:alt" content="Pirimid Industrial AI platform for construction productivity">
+    <!-- Structured Data: Organization -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -18,6 +44,9 @@
       "url": "https://pirimid.ai",
       "logo": "https://pirimid.ai/PirimidLogo.png",
       "description": "Industrial AI platform for construction productivity optimization, connecting the workface to design plans.",
+      "sameAs": [
+        "https://www.linkedin.com/company/pirimid"
+      ],
       "contactPoint": {
         "@type": "ContactPoint",
         "email": "info@pirimid.ai",
@@ -25,15 +54,43 @@
       }
     }
     </script>
+    <!-- Structured Data: WebApplication -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "Pirimid Industrial AI Platform",
+      "url": "https://pirimid.ai/",
+      "applicationCategory": "BusinessApplication",
+      "applicationSubCategory": "Construction Productivity Software",
+      "operatingSystem": "Any (Web)",
+      "description": "Industrial AI platform connecting construction workface execution to design plans via operations science and predictive digital twin simulation. Compress project schedules, improve forecast predictability, and optimize welding productivity with real-time visibility and AI-powered insights.",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD",
+        "description": "Interactive demo and ROI calculator available free; enterprise pricing on request."
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "Pirimid",
+        "url": "https://pirimid.ai"
+      }
+    }
+    </script>
     <!-- Chosen Palette: Corporate Blue & Neutrals -->
     <!-- Application Structure Plan: A narrative, single-page scrolling application that guides the user from the high-level business case to a tangible, interactive product demonstration. The structure is thematic: Hero, The Big Picture (Problem/Market/Opportunity), The Solution (Product), Interactive Demo, and Competition. This flow is designed to first convince the user of the "why" (the business case) and then let them experience the "how" (the product's value) through direct interaction. The interactive demo with sliders directly showcases the "Scenario Analysis" feature, making the core value proposition tangible and more impactful than a static image. -->
     <!-- Visualization & Content Choices: The core of the application is the interactive demo. Report Info: Forecasting example. Goal: Compare, Change, Relate. Viz/Method: A Chart.js line chart to show multiple forecasts, HTML/Tailwind metric cards for key stats, and HTML range sliders for user input. Interaction: User manipulates sliders for operational variables (e.g., Equipment Hours). JS listeners recalculate a "Mitigated Forecast" and update both the chart and metric cards in real-time. Justification: This transforms the static PDF example into a dynamic "what-if" tool, directly demonstrating Pirimid's value in a memorable way. Other report data (market size, problem stats) are presented as clear, static "stat-cards" for quick comprehension. -->
     <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js" defer></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" media="print" onload="this.media='all'">
+    <noscript>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap">
+    </noscript>
     <style>
         body {
             font-family: 'Inter', sans-serif;
@@ -219,7 +276,7 @@
         <nav class="container mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex items-center justify-between h-16">
                 <div class="flex items-center">
-                    <a href="#"><img src="PirimidLogoWebsite.png" alt="Pirimid Logo" class="h-10 w-auto"></a>
+                    <a href="/" aria-label="Pirimid home"><img src="PirimidLogoWebsite.png" alt="Pirimid Logo" width="160" height="40" class="h-10 w-auto"></a>
                 </div>
                 <div class="hidden md:flex items-center space-x-8">
                     <a href="#overview" class="text-slate-600 hover:text-sky-500 transition-colors">Overview</a>
@@ -296,8 +353,12 @@
                         </div>
                     </div>
                     <div class="relative md:order-2 order-1">
-                        <img src="IndustrialPlantHero.png" alt="Industrial Plant"
-                            class="mx-auto rounded-2xl shadow-2xl border border-slate-100 w-full h-auto transition-transform duration-500 hover:scale-[1.02]">
+                        <picture>
+                            <source srcset="IndustrialPlantHero.jpg" type="image/jpeg">
+                            <img src="IndustrialPlantHero.png" alt="Industrial plant piping installation representing construction workface execution"
+                                width="1610" height="977" loading="eager" fetchpriority="high"
+                                class="mx-auto rounded-2xl shadow-2xl border border-slate-100 w-full h-auto transition-transform duration-500 hover:scale-[1.02]">
+                        </picture>
                     </div>
                 </div>
             </div>
@@ -589,16 +650,18 @@
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8 items-center text-center md:text-left">
                 <div>
                     <img src="PirimidLogoWebsite.png" alt="Pirimid Logo"
-                        class="h-8 w-auto mx-auto md:mx-0 brightness-0 invert opacity-80">
+                        width="128" height="32" loading="lazy"
+                        class="h-8 w-auto mx-auto md:mx-0 brightness-0 invert">
                     <p class="text-sm mt-3 text-slate-500">Modernizing construction, one data point at a time.</p>
                 </div>
                 <div class="flex justify-center space-x-6">
-                    <a href="#" class="hover:text-white transition-colors">Overview</a>
+                    <a href="#overview" class="hover:text-white transition-colors">Overview</a>
                     <a href="#solution" class="hover:text-white transition-colors">Solution</a>
                     <a href="#demo" class="hover:text-white transition-colors">Demo</a>
                     <a href="#contact" class="hover:text-white transition-colors">Contact</a>
                     <a href="pirimid_roi_calculator.html" class="hover:text-white transition-colors">Welding ROI
                         Calculator</a>
+                    <a href="privacy.html" class="hover:text-white transition-colors">Privacy</a>
                 </div>
                 <div class="text-center md:text-right text-sm text-slate-500">
                     <p>&copy; <span id="currentYear">2026</span> Pirimid. All rights reserved.</p>
