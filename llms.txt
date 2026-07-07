@@ -4,11 +4,17 @@
 
 [Pirimid](https://pirimid.ai/) is an Industrial AI platform that optimizes construction productivity by connecting construction workface execution to design specifications. It uses operations science to compress project schedules, improve predictability, and optimize welding productivity.
 
+Last updated: 2026-07-06
+
 ## Core Resources
 
-- [Home](https://pirimid.ai/) - Main website outlining the business case, market opportunity, and an interactive digital twin schedule-simulation demo.
+- [Home](https://pirimid.ai/) - Main website outlining the business case, market opportunity, and an interactive digital twin schedule-simulation demo (insight summary available as static text under the chart for crawlers that do not run JavaScript).
 - [Welding ROI Calculator](https://pirimid.ai/pirimid_roi_calculator.html) - Interactive tool to estimate monthly and annual savings, breakeven thresholds, and overall ROI based on welder count, hourly rate, and productivity improvements.
 - [Privacy Policy](https://pirimid.ai/privacy.html) - Information on how Pirimid handles your data.
+
+## Extended Detail
+
+- [Full Platform Details](https://pirimid.ai/llms-full.txt) - Consolidated, text-only specification of the Pirimid platform, market opportunity, digital twin capabilities, and the welding ROI calculation models.
 
 ## Key Concepts
 

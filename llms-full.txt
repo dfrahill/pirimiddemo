@@ -1,6 +1,10 @@
 # Pirimid - Full Platform Details & Specifications
 
+Last updated: 2026-07-06
+
 This document contains a consolidated, text-only version of the Pirimid platform details, market opportunity, digital twin capabilities, and the welding ROI calculation models. It is designed to be easily ingested by AI search agents.
+
+See the live interactive digital twin demo at <https://pirimid.ai/#demo>. The demo's insight summary (forecast scenarios, projected end-date variance, primary delay, and mitigation guidance) is also rendered as static text in the page HTML so it can be extracted without executing JavaScript.
 
 ---
 
